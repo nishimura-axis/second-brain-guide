@@ -823,53 +823,210 @@
             <h2>📝 セットアップ手順</h2>
             <p>30分程度で完了します。大部分はAIが自動で行います。</p>
         </div>
+
+        <!-- あなたがやること vs AIがやること -->
+        <div class="comparison" style="margin-bottom: 3rem;">
+            <table>
+                <thead>
+                    <tr>
+                        <th>👤 あなたがやること（手動）</th>
+                        <th>🤖 AIがやること（自動）</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>ツールのインストール</td>
+                        <td class="highlight">Vaultフォルダ構造の作成</td>
+                    </tr>
+                    <tr>
+                        <td>GitHubアカウント作成</td>
+                        <td class="highlight">Git初期設定</td>
+                    </tr>
+                    <tr>
+                        <td>アクセストークンの取得</td>
+                        <td class="highlight">リポジトリ作成・連携</td>
+                    </tr>
+                    <tr>
+                        <td>CursorでVaultを開く</td>
+                        <td class="highlight">ルールファイルの作成</td>
+                    </tr>
+                    <tr>
+                        <td>AIに指示を出す</td>
+                        <td class="highlight">以降のすべての操作</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         
         <div class="steps">
+            <!-- STEP 1: Obsidianのインストール -->
             <div class="step">
                 <div class="step-content">
-                    <h3>ツールのインストール</h3>
-                    <p>Obsidian と Cursor をダウンロードしてインストール。画面の指示に従うだけです。</p>
-                    <span class="step-time">⏱️ 約15分</span>
-                    <div class="code-block">
-                        <pre>
-<span class="comment"># ダウンロードURL</span>
-Obsidian: https://obsidian.md
-Cursor:   https://cursor.sh</pre>
+                    <h3>Obsidianのインストール</h3>
+                    <p>情報を保管するノートアプリをインストールします。</p>
+                    <span class="step-time">⏱️ 約5分</span>
+                    
+                    <div style="margin-top: 1.5rem; padding: 1.5rem; background: var(--bg-tertiary); border-radius: 12px; border-left: 3px solid var(--accent-primary);">
+                        <ol style="margin: 0; padding-left: 1.5rem; color: var(--text-secondary);">
+                            <li style="margin-bottom: 0.75rem;">ブラウザで <a href="https://obsidian.md" target="_blank" style="color: var(--accent-primary);">https://obsidian.md</a> にアクセス</li>
+                            <li style="margin-bottom: 0.75rem;">画面中央の「<strong style="color: var(--text-primary);">Get Obsidian for free</strong>」ボタンをクリック</li>
+                            <li style="margin-bottom: 0.75rem;">あなたのパソコンに合わせてダウンロード
+                                <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
+                                    <li>Macの場合：「Download for macOS」</li>
+                                    <li>Windowsの場合：「Download for Windows」</li>
+                                </ul>
+                            </li>
+                            <li style="margin-bottom: 0.75rem;">ダウンロードしたファイルをダブルクリックして開く</li>
+                            <li style="margin-bottom: 0;">画面の指示に従ってインストール（「続ける」「インストール」を押していくだけ）</li>
+                        </ol>
                     </div>
                 </div>
             </div>
 
+            <!-- STEP 2: Cursorのインストール -->
+            <div class="step">
+                <div class="step-content">
+                    <h3>Cursorのインストール</h3>
+                    <p>AIを搭載したエディタをインストールします。</p>
+                    <span class="step-time">⏱️ 約5分</span>
+                    
+                    <div style="margin-top: 1.5rem; padding: 1.5rem; background: var(--bg-tertiary); border-radius: 12px; border-left: 3px solid var(--accent-primary);">
+                        <ol style="margin: 0; padding-left: 1.5rem; color: var(--text-secondary);">
+                            <li style="margin-bottom: 0.75rem;">ブラウザで <a href="https://cursor.sh" target="_blank" style="color: var(--accent-primary);">https://cursor.sh</a> にアクセス</li>
+                            <li style="margin-bottom: 0.75rem;">画面中央の「<strong style="color: var(--text-primary);">Download</strong>」ボタンをクリック</li>
+                            <li style="margin-bottom: 0.75rem;">自動でダウンロードが始まります</li>
+                            <li style="margin-bottom: 0.75rem;">ダウンロードしたファイルをダブルクリックして開く</li>
+                            <li style="margin-bottom: 0.75rem;">画面の指示に従ってインストール</li>
+                            <li style="margin-bottom: 0;"><strong style="color: var(--text-primary);">初回起動時のアカウント作成</strong>
+                                <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
+                                    <li>「Sign in」をクリック</li>
+                                    <li>「<strong>Continue with Google</strong>」を選択（Googleアカウントで簡単にログインできます）</li>
+                                    <li>または、メールアドレスで新規登録</li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 3: Vaultの作成 -->
             <div class="step">
                 <div class="step-content">
                     <h3>Vaultの作成</h3>
                     <p>Obsidianで新しいVault（保管庫）を作成します。これがあなたの「第二の脳」の本体になります。</p>
-                    <span class="step-time">⏱️ 約5分</span>
+                    <span class="step-time">⏱️ 約3分</span>
+                    
+                    <div style="margin-top: 1.5rem; padding: 1.5rem; background: var(--bg-tertiary); border-radius: 12px; border-left: 3px solid var(--accent-primary);">
+                        <ol style="margin: 0; padding-left: 1.5rem; color: var(--text-secondary);">
+                            <li style="margin-bottom: 0.75rem;">Obsidianを起動</li>
+                            <li style="margin-bottom: 0.75rem;">「<strong style="color: var(--text-primary);">Create new vault</strong>」（新しい保管庫を作成）をクリック</li>
+                            <li style="margin-bottom: 0.75rem;">以下を入力：
+                                <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
+                                    <li><strong>Vault name</strong>: <code style="background: var(--bg-primary); padding: 0.2rem 0.5rem; border-radius: 4px;">MyVault</code>（または好きな名前）</li>
+                                    <li><strong>Location</strong>: 「Browse」をクリックして、<strong>ドキュメントフォルダ</strong>を選択</li>
+                                </ul>
+                            </li>
+                            <li style="margin-bottom: 0.75rem;">「Create」をクリック</li>
+                            <li style="margin-bottom: 0;"><strong style="color: var(--accent-primary);">作成したらObsidianは閉じてOKです</strong>（これ以降の作業はCursorで行います）</li>
+                        </ol>
+                    </div>
                 </div>
             </div>
 
+            <!-- STEP 4: CursorでVaultを開く -->
             <div class="step">
                 <div class="step-content">
                     <h3>CursorでVaultを開く</h3>
                     <p>Cursorを起動して、作成したVaultフォルダを開きます。</p>
-                    <span class="step-time">⏱️ 約3分</span>
+                    <span class="step-time">⏱️ 約2分</span>
+                    
+                    <div style="margin-top: 1.5rem; padding: 1.5rem; background: var(--bg-tertiary); border-radius: 12px; border-left: 3px solid var(--accent-primary);">
+                        <ol style="margin: 0; padding-left: 1.5rem; color: var(--text-secondary);">
+                            <li style="margin-bottom: 0.75rem;">Cursorを起動</li>
+                            <li style="margin-bottom: 0.75rem;">「<strong style="color: var(--text-primary);">File</strong>」メニュー →「<strong style="color: var(--text-primary);">Open Folder</strong>」を選択</li>
+                            <li style="margin-bottom: 0.75rem;">STEP 3で作成したVaultフォルダを選択
+                                <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
+                                    <li>例：<code style="background: var(--bg-primary); padding: 0.2rem 0.5rem; border-radius: 4px;">ドキュメント/MyVault</code></li>
+                                </ul>
+                            </li>
+                            <li style="margin-bottom: 0;">「Open」をクリック</li>
+                        </ol>
+                    </div>
                 </div>
             </div>
 
+            <!-- STEP 5: GitHubアカウント作成 -->
             <div class="step">
                 <div class="step-content">
-                    <h3>GitHubアカウント作成とトークン取得</h3>
-                    <p>GitHubアカウントを作成し、アクセストークンを取得します。これは手動で行う唯一のステップです。</p>
-                    <span class="step-time">⏱️ 約10分</span>
+                    <h3>GitHubアカウントの作成</h3>
+                    <p>クラウドにバックアップするためのGitHubアカウントを作成します。</p>
+                    <span class="step-time">⏱️ 約5分</span>
+                    
+                    <div style="margin-top: 1.5rem; padding: 1.5rem; background: var(--bg-tertiary); border-radius: 12px; border-left: 3px solid var(--accent-primary);">
+                        <ol style="margin: 0; padding-left: 1.5rem; color: var(--text-secondary);">
+                            <li style="margin-bottom: 0.75rem;">ブラウザで <a href="https://github.com" target="_blank" style="color: var(--accent-primary);">https://github.com</a> にアクセス</li>
+                            <li style="margin-bottom: 0.75rem;">画面右上の「<strong style="color: var(--text-primary);">Sign up</strong>」をクリック</li>
+                            <li style="margin-bottom: 0.75rem;">以下を入力：
+                                <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
+                                    <li><strong>メールアドレス</strong>：会社のメールでOK</li>
+                                    <li><strong>パスワード</strong>：8文字以上、数字と小文字を含む</li>
+                                    <li><strong>ユーザー名</strong>：半角英数字（例：yamada-taro）</li>
+                                </ul>
+                            </li>
+                            <li style="margin-bottom: 0.75rem;">「Create account」をクリック</li>
+                            <li style="margin-bottom: 0;">メールに届いた認証コードを入力して完了！</li>
+                        </ol>
+                    </div>
                 </div>
             </div>
 
+            <!-- STEP 6: アクセストークン取得 -->
             <div class="step">
                 <div class="step-content">
-                    <h3>AIに初期セットアップを依頼</h3>
+                    <h3>アクセストークンの取得 <span style="color: #ef4444; font-size: 0.8em;">⚠️ 重要</span></h3>
+                    <p>AIがGitHubを操作するためのトークンを取得します。<strong style="color: var(--accent-primary);">このステップだけは手動で行う必要があります。</strong></p>
+                    <span class="step-time">⏱️ 約5分</span>
+                    
+                    <div style="margin-top: 1.5rem; padding: 1.5rem; background: var(--bg-tertiary); border-radius: 12px; border-left: 3px solid #ef4444;">
+                        <ol style="margin: 0; padding-left: 1.5rem; color: var(--text-secondary);">
+                            <li style="margin-bottom: 0.75rem;">GitHubにログインした状態で、以下のURLにアクセス：<br>
+                                <a href="https://github.com/settings/tokens/new" target="_blank" style="color: var(--accent-primary); word-break: break-all;">https://github.com/settings/tokens/new</a>
+                            </li>
+                            <li style="margin-bottom: 0.75rem;">以下を入力：
+                                <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
+                                    <li><strong>Note</strong>: <code style="background: var(--bg-primary); padding: 0.2rem 0.5rem; border-radius: 4px;">MyVault-Cursor</code>（何でもOK、識別用）</li>
+                                    <li><strong>Expiration</strong>: 「<strong style="color: var(--text-primary);">No expiration</strong>」を選択（無期限）</li>
+                                    <li><strong>Select scopes</strong>: 以下にチェック ✅
+                                        <ul style="margin-top: 0.25rem;">
+                                            <li><code style="background: var(--bg-primary); padding: 0.2rem 0.5rem; border-radius: 4px;">repo</code>（一番上、すべての repo 権限）</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li style="margin-bottom: 0.75rem;">画面下部の「<strong style="color: var(--text-primary);">Generate token</strong>」をクリック</li>
+                            <li style="margin-bottom: 0; padding: 1rem; background: rgba(239, 68, 68, 0.1); border-radius: 8px; border: 1px solid rgba(239, 68, 68, 0.3);">
+                                <strong style="color: #ef4444;">⚠️ 重要：</strong>表示されたトークン（<code style="background: var(--bg-primary); padding: 0.2rem 0.5rem; border-radius: 4px;">ghp_</code> で始まる文字列）をコピーして安全な場所に保存<br>
+                                <span style="font-size: 0.9em; color: var(--text-muted);">※このトークンは<strong>一度しか表示されません</strong>。メモ帳などに一時的に貼り付けておいてください。</span>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 7: AIに初期セットアップを依頼 -->
+            <div class="step">
+                <div class="step-content">
+                    <h3>AIに初期セットアップを依頼 <span style="color: #22c55e; font-size: 0.8em;">🎉 ここからAIにお任せ！</span></h3>
                     <p>以下のプロンプトをCursorのチャットにコピー＆ペーストして送信するだけ。AIがすべて自動で設定します。</p>
                     <span class="step-time">⏱️ 約10分</span>
+                    
+                    <div style="margin-top: 1rem; padding: 1rem; background: rgba(34, 197, 94, 0.1); border-radius: 8px; border: 1px solid rgba(34, 197, 94, 0.3); margin-bottom: 1rem;">
+                        <strong style="color: #22c55e;">💡 チャットパネルの開き方：</strong><br>
+                        <span style="color: var(--text-secondary);">Mac: <code style="background: var(--bg-primary); padding: 0.2rem 0.5rem; border-radius: 4px;">Cmd + L</code> ／ Windows: <code style="background: var(--bg-primary); padding: 0.2rem 0.5rem; border-radius: 4px;">Ctrl + L</code></span>
+                    </div>
+                    
                     <div class="code-block">
-                        <pre>
+                        <pre style="font-size: 0.8rem;">
 # 第二の脳 初期セットアップ依頼
 
 私の「第二の脳」としてObsidian Vaultを構築してください。
@@ -889,17 +1046,53 @@ Cursor:   https://cursor.sh</pre>
 
 ### 2. .cursorrules の作成
 AIルールファイルを作成してください。
+（スターターキットの内容で作成し、後で私がカスタマイズできるようにしてください）
 
 ### 3. Git初期設定とGitHub連携
-以下の情報でGitを設定してください：
-- GitHubユーザー名: （あなたのユーザー名）
-- メールアドレス: （GitHubに登録したメール）
-- アクセストークン: （取得したトークン）
+以下の情報でGitを設定し、GitHubにリポジトリを作成して連携してください：
+
+- GitHubユーザー名: （ここにあなたのユーザー名を入力）
+- メールアドレス: （ここにGitHubに登録したメールを入力）
+- アクセストークン: （ここにSTEP6で取得したトークンを貼り付け）
 - リポジトリ名: MyVault
-- 公開設定: private
+- リポジトリの公開設定: private（非公開）
 
 ### 4. 動作確認
-セットアップ完了後、確認してください。</pre>
+セットアップが完了したら、正しく設定できているか確認してください。
+
+---
+よろしくお願いします！</pre>
+                    </div>
+                    
+                    <div style="margin-top: 1rem; padding: 1rem; background: var(--bg-tertiary); border-radius: 8px;">
+                        <strong style="color: var(--text-primary);">📌 AIの指示に従ってください</strong><br>
+                        <span style="color: var(--text-secondary);">AIが必要な操作を順番に実行していきます。途中で「実行してよいですか？」と確認されることがありますが、「はい」や「OK」と答えてください。</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 8: 動作確認 -->
+            <div class="step">
+                <div class="step-content">
+                    <h3>セットアップ完了後の確認</h3>
+                    <p>セットアップが完了したら、AIに以下を送信して動作確認しましょう。</p>
+                    <span class="step-time">⏱️ 約2分</span>
+                    
+                    <div class="code-block">
+                        <pre>
+セットアップが完了したので、以下を確認してください：
+
+1. Vaultのフォルダ構造が正しく作成されているか
+2. .cursorrules が正しく設定されているか
+3. GitHubに正しく連携されているか
+
+問題があれば教えてください。</pre>
+                    </div>
+                    
+                    <div style="margin-top: 1.5rem; padding: 1.5rem; background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%); border-radius: 12px; border: 1px solid var(--accent-primary); text-align: center;">
+                        <span style="font-size: 2rem;">🎉</span>
+                        <p style="margin: 0.5rem 0 0; color: var(--text-primary); font-size: 1.1rem; font-weight: 500;">セットアップ完了です！</p>
+                        <p style="margin: 0.5rem 0 0; color: var(--text-secondary); font-size: 0.9rem;">あなたの「第二の脳」が使えるようになりました</p>
                     </div>
                 </div>
             </div>
