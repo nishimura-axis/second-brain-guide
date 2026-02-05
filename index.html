@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第二の脳構築ガイド | Obsidian × Cursor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-tertiary: #1a1a25;
+            --accent-primary: #6366f1;
+            --accent-secondary: #8b5cf6;
+            --accent-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a855f7 100%);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --border-color: #2d2d3a;
+            --card-bg: rgba(26, 26, 37, 0.8);
+            --glow: 0 0 40px rgba(99, 102, 241, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        /* Background Effects */
+        .bg-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(99, 102, 241, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(99, 102, 241, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .bg-glow {
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 30%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 70%, rgba(139, 92, 246, 0.08) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(-5%, -5%); }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 1rem 2rem;
+            background: rgba(10, 10, 15, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: 700;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 8rem 2rem 4rem;
+            position: relative;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 100px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .hero-badge::before {
+            content: '🧠';
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            max-width: 900px;
+        }
+
+        .hero h1 span {
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin-bottom: 3rem;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--accent-gradient);
+            color: white;
+            box-shadow: var(--glow);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 60px rgba(99, 102, 241, 0.5);
+        }
+
+        .btn-secondary {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-secondary);
+            border-color: var(--accent-primary);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Problem Section */
+        .problems {
+            background: var(--bg-secondary);
+            border-radius: 24px;
+            padding: 4rem;
+            margin: 4rem auto;
+            max-width: 1000px;
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .problem-card {
+            padding: 2rem;
+            background: var(--bg-tertiary);
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s;
+        }
+
+        .problem-card:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-4px);
+        }
+
+        .problem-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .problem-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .problem-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* Comparison Table */
+        .comparison {
+            overflow-x: auto;
+            margin: 3rem 0;
+        }
+
+        .comparison table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--bg-secondary);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .comparison th,
+        .comparison td {
+            padding: 1.25rem 1.5rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .comparison th {
+            background: var(--bg-tertiary);
+            font-weight: 500;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .comparison td:first-child {
+            font-weight: 500;
+        }
+
+        .comparison tr:last-child td {
+            border-bottom: none;
+        }
+
+        .comparison .highlight {
+            color: var(--accent-primary);
+            font-weight: 500;
+        }
+
+        /* Features */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            padding: 2.5rem;
+            background: var(--card-bg);
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            border-color: var(--accent-primary);
+            box-shadow: var(--glow);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--accent-gradient);
+            border-radius: 16px;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+        }
+
+        /* Tools Section */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .tool-card {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: var(--bg-secondary);
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s;
+        }
+
+        .tool-card:hover {
+            border-color: var(--accent-primary);
+        }
+
+        .tool-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tool-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .tool-card .role {
+            color: var(--accent-primary);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .tool-card p {
+            color: var(--text-secondary);
+        }
+
+        /* Steps */
+        .steps {
+            counter-reset: step;
+        }
+
+        .step {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: var(--bg-secondary);
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            position: relative;
+        }
+
+        .step::before {
+            counter-increment: step;
+            content: "STEP " counter(step);
+            position: absolute;
+            top: -12px;
+            left: 24px;
+            background: var(--accent-gradient);
+            padding: 0.25rem 1rem;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+        }
+
+        .step-content h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .step-content p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .step-time {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        /* Code Block */
+        .code-block {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            overflow-x: auto;
+        }
+
+        .code-block pre {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .code-block .comment {
+            color: var(--text-muted);
+        }
+
+        /* Prompt Examples */
+        .prompt-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .prompt-card {
+            background: var(--bg-secondary);
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+        }
+
+        .prompt-header {
+            padding: 1rem 1.5rem;
+            background: var(--bg-tertiary);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .prompt-header .icon {
+            font-size: 1.25rem;
+        }
+
+        .prompt-header h4 {
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .prompt-content {
+            padding: 1.5rem;
+        }
+
+        .prompt-content pre {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            white-space: pre-wrap;
+            line-height: 1.6;
+        }
+
+        /* FAQ */
+        .faq-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            margin-bottom: 1rem;
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 500;
+        }
+
+        .faq-question::after {
+            content: '+';
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            transition: transform 0.3s;
+        }
+
+        .faq-item.open .faq-question::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .faq-item.open .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            max-height: 500px;
+        }
+
+        .faq-answer p {
+            color: var(--text-secondary);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 4rem 2rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-cta {
+            margin-bottom: 2rem;
+        }
+
+        .footer-cta h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-cta p {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .footer-info {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 6rem 1rem 3rem;
+            }
+
+            .problems {
+                padding: 2rem;
+            }
+
+            .step {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .prompt-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.6s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+    </style>
+</head>
+<body>
+    <div class="bg-grid"></div>
+    <div class="bg-glow"></div>
+
+    <nav>
+        <div class="logo">🧠 Second Brain</div>
+        <ul class="nav-links">
+            <li><a href="#problem">課題</a></li>
+            <li><a href="#features">できること</a></li>
+            <li><a href="#setup">セットアップ</a></li>
+            <li><a href="#prompts">使い方</a></li>
+            <li><a href="#faq">FAQ</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-badge fade-in">AXIS Holdings 管理職向けガイド</div>
+        <h1 class="fade-in delay-1">
+            あなたの思考を<br>
+            <span>AIで拡張</span>する
+        </h1>
+        <p class="hero-subtitle fade-in delay-2">
+            Obsidian × Cursor で実現する「第二の脳」<br>
+            情報過多の時代を、AIの力で乗り越える
+        </p>
+        <div class="hero-cta fade-in delay-3">
+            <a href="#setup" class="btn btn-primary">
+                セットアップを始める →
+            </a>
+            <a href="#features" class="btn btn-secondary">
+                詳しく見る
+            </a>
+        </div>
+    </header>
+
+    <section id="problem">
+        <div class="problems">
+            <div class="section-header">
+                <h2>😰 こんな経験ありませんか？</h2>
+                <p>これらはすべて「脳の容量不足」が原因です</p>
+            </div>
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <div class="problem-icon">📝</div>
+                    <h3>「あの情報どこだっけ…」</h3>
+                    <p>Slack、メール、ドキュメント、手元のメモ…情報が散らばりすぎて探せない</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">🤔</div>
+                    <h3>「前に考えたはずなのに…」</h3>
+                    <p>過去の思考や判断の理由が思い出せない</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">😵</div>
+                    <h3>「頭の中がパンクしそう…」</h3>
+                    <p>管理すべき情報量が多すぎて処理しきれない</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">💭</div>
+                    <h3>「この判断で合ってる？」</h3>
+                    <p>壁打ち相手がいない、自分だけで考えても堂々巡り</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="solution">
+        <div class="section-header">
+            <h2>💡 解決策：第二の脳</h2>
+            <p>外付けハードディスク + AI秘書 = あなた専用の思考拡張システム</p>
+        </div>
+        
+        <div class="comparison">
+            <table>
+                <thead>
+                    <tr>
+                        <th>観点</th>
+                        <th>ChatGPT（単体）</th>
+                        <th>第二の脳（Obsidian + Cursor）</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>文脈の理解</td>
+                        <td>毎回ゼロから説明が必要</td>
+                        <td class="highlight">あなたの全情報を把握済み</td>
+                    </tr>
+                    <tr>
+                        <td>情報の蓄積</td>
+                        <td>会話が消える</td>
+                        <td class="highlight">すべて構造化して永続保存</td>
+                    </tr>
+                    <tr>
+                        <td>検索性</td>
+                        <td>過去の回答を探せない</td>
+                        <td class="highlight">いつでも瞬時に検索可能</td>
+                    </tr>
+                    <tr>
+                        <td>カスタマイズ</td>
+                        <td>汎用的な回答</td>
+                        <td class="highlight">あなた専用にチューニング</td>
+                    </tr>
+                    <tr>
+                        <td>活用範囲</td>
+                        <td>質問→回答のみ</td>
+                        <td class="highlight">壁打ち・整理・作成・分析すべて</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section id="features">
+        <div class="section-header">
+            <h2>🚀 これで何ができるようになるか</h2>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🧠</div>
+                <h3>思考の外部化</h3>
+                <p>頭の中のモヤモヤを文章化してAIと壁打ち。判断の理由を記録し、「考えた」ことが資産として蓄積される。</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>情報の一元管理</h3>
+                <p>目標 → プロジェクト → タスクを一気通貫で管理。「あの情報どこだっけ」がなくなる。</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🤖</div>
+                <h3>AIによる業務加速</h3>
+                <p>文字起こしからの情報整理、要件定義の壁打ち、過去の判断を踏まえた意思決定サポート。</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔗</div>
+                <h3>知識の連結</h3>
+                <p>バラバラだった情報がつながり、新しいアイデアや気づきが生まれる。</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="tools">
+        <div class="section-header">
+            <h2>🛠️ 必要なツール</h2>
+            <p>すべて無料で始められます</p>
+        </div>
+        <div class="tools-grid">
+            <div class="tool-card">
+                <div class="tool-icon">📁</div>
+                <h3>Obsidian</h3>
+                <div class="role">外付けハードディスク</div>
+                <p>情報を保管するノートアプリ。マークダウンで書けて、リンクで知識をつなげられる。</p>
+            </div>
+            <div class="tool-card">
+                <div class="tool-icon">🤖</div>
+                <h3>Cursor</h3>
+                <div class="role">AI秘書付きの作業デスク</div>
+                <p>AIを搭載したエディタ。あなたのすべてのファイルを理解した上で会話できる。</p>
+            </div>
+            <div class="tool-card">
+                <div class="tool-icon">☁️</div>
+                <h3>GitHub</h3>
+                <div class="role">クラウドストレージ</div>
+                <p>情報をクラウドに同期・バックアップ。変更履歴も残るので安心。</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="setup">
+        <div class="section-header">
+            <h2>📝 セットアップ手順</h2>
+            <p>30分程度で完了します。大部分はAIが自動で行います。</p>
+        </div>
+        
+        <div class="steps">
+            <div class="step">
+                <div class="step-content">
+                    <h3>ツールのインストール</h3>
+                    <p>Obsidian と Cursor をダウンロードしてインストール。画面の指示に従うだけです。</p>
+                    <span class="step-time">⏱️ 約15分</span>
+                    <div class="code-block">
+                        <pre>
+<span class="comment"># ダウンロードURL</span>
+Obsidian: https://obsidian.md
+Cursor:   https://cursor.sh</pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-content">
+                    <h3>Vaultの作成</h3>
+                    <p>Obsidianで新しいVault（保管庫）を作成します。これがあなたの「第二の脳」の本体になります。</p>
+                    <span class="step-time">⏱️ 約5分</span>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-content">
+                    <h3>CursorでVaultを開く</h3>
+                    <p>Cursorを起動して、作成したVaultフォルダを開きます。</p>
+                    <span class="step-time">⏱️ 約3分</span>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-content">
+                    <h3>GitHubアカウント作成とトークン取得</h3>
+                    <p>GitHubアカウントを作成し、アクセストークンを取得します。これは手動で行う唯一のステップです。</p>
+                    <span class="step-time">⏱️ 約10分</span>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-content">
+                    <h3>AIに初期セットアップを依頼</h3>
+                    <p>以下のプロンプトをCursorのチャットにコピー＆ペーストして送信するだけ。AIがすべて自動で設定します。</p>
+                    <span class="step-time">⏱️ 約10分</span>
+                    <div class="code-block">
+                        <pre>
+# 第二の脳 初期セットアップ依頼
+
+私の「第二の脳」としてObsidian Vaultを構築してください。
+
+## やってほしいこと
+
+### 1. フォルダ構造の作成
+以下のフォルダを作成してください：
+- 00_Inbox（とりあえず放り込む場所）
+- 10_Goals（目標管理）
+- 20_Context（業務の前提情報）
+- 30_Projects（プロジェクト管理）
+- 40_Knowledge（普遍的なノウハウ）
+- 50_Literature（読書・記事メモ）
+- 60_Templates（テンプレート）
+- 70_Meetings（MTGログ）
+
+### 2. .cursorrules の作成
+AIルールファイルを作成してください。
+
+### 3. Git初期設定とGitHub連携
+以下の情報でGitを設定してください：
+- GitHubユーザー名: （あなたのユーザー名）
+- メールアドレス: （GitHubに登録したメール）
+- アクセストークン: （取得したトークン）
+- リポジトリ名: MyVault
+- 公開設定: private
+
+### 4. 動作確認
+セットアップ完了後、確認してください。</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="prompts">
+        <div class="section-header">
+            <h2>🎮 基本的な使い方</h2>
+            <p>Cursorのチャット（Cmd + L）を開いて、自然な日本語で話しかけるだけ</p>
+        </div>
+
+        <div class="prompt-grid">
+            <div class="prompt-card">
+                <div class="prompt-header">
+                    <span class="icon">📥</span>
+                    <h4>メモを追加する</h4>
+                </div>
+                <div class="prompt-content">
+                    <pre>以下の内容をInboxに追加してください：
+（ここにメモの内容をペースト）</pre>
+                </div>
+            </div>
+
+            <div class="prompt-card">
+                <div class="prompt-header">
+                    <span class="icon">🧹</span>
+                    <h4>Inboxを整理する</h4>
+                </div>
+                <div class="prompt-content">
+                    <pre>00_Inboxの中身を確認して、整理を手伝ってください。
+各ファイルがどのフォルダに移動すべきか提案してください。</pre>
+                </div>
+            </div>
+
+            <div class="prompt-card">
+                <div class="prompt-header">
+                    <span class="icon">🎯</span>
+                    <h4>目標を設定する</h4>
+                </div>
+                <div class="prompt-content">
+                    <pre>今月の目標を設定したいです。
+10_Goals に月次目標のファイルを作成してください。</pre>
+                </div>
+            </div>
+
+            <div class="prompt-card">
+                <div class="prompt-header">
+                    <span class="icon">🤔</span>
+                    <h4>壁打ちする</h4>
+                </div>
+                <div class="prompt-content">
+                    <pre>〇〇について壁打ちしたいです。
+私の考えは以下なのですが、問題点があれば指摘してください：
+（あなたの考えを書く）</pre>
+                </div>
+            </div>
+
+            <div class="prompt-card">
+                <div class="prompt-header">
+                    <span class="icon">🔍</span>
+                    <h4>情報を探す</h4>
+                </div>
+                <div class="prompt-content">
+                    <pre>過去に〇〇について考えたことがあったと思います。
+関連するファイルを探してください。</pre>
+                </div>
+            </div>
+
+            <div class="prompt-card">
+                <div class="prompt-header">
+                    <span class="icon">❓</span>
+                    <h4>困った時</h4>
+                </div>
+                <div class="prompt-content">
+                    <pre>AIに何を聞けばいいかわかりません。
+私の状況は〇〇なのですが、どんな質問をすれば良いですか？</pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq">
+        <div class="section-header">
+            <h2>❓ よくある質問</h2>
+        </div>
+        <div class="faq-list">
+            <div class="faq-item">
+                <div class="faq-question">エンジニアじゃなくても使えますか？</div>
+                <div class="faq-answer">
+                    <p>はい、使えます。このガイドは非エンジニア向けに作成しています。コードを書く必要はありません。基本的にはAIと日本語で会話するだけで操作できます。</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">スマホからも使えますか？</div>
+                <div class="faq-answer">
+                    <p>現在、より便利なスマホ連携機能を開発中です。LINE公式アカウント経由でAIと会話し、自動でVaultに追加される仕組みを構築予定です。完成次第、改めて共有します。</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">情報は安全ですか？</div>
+                <div class="faq-answer">
+                    <p>はい。データはあなたのPC内とGitHub（プライベートリポジトリ）にのみ保存されます。外部サービスにデータが保存されることはありません。※AIと会話する際、質問内容はAIプロバイダーに送信されます。</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">無料で使えますか？</div>
+                <div class="faq-answer">
+                    <p>基本機能は無料です。Cursor Proなどの有料プランを使うとより快適になりますが、無料でも十分に活用できます。</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">ChatGPTと何が違うの？</div>
+                <div class="faq-answer">
+                    <p>大きく2点違います。①文脈の継続性：ChatGPTは毎回リセットされますが、Cursorはあなたの全ファイルを常に把握しています。②情報の蓄積：ChatGPTの回答は消えますが、Cursorでの会話結果はファイルとして永続保存されます。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-cta">
+            <h2>さあ、始めましょう</h2>
+            <p>「第二の脳」は使えば使うほど、あなた専用にカスタマイズされ、より賢くなっていきます。</p>
+            <a href="#setup" class="btn btn-primary">セットアップを始める →</a>
+        </div>
+        <div class="footer-info">
+            <p>困ったら：西村まで ｜ 勉強会：定期開催予定</p>
+            <p style="margin-top: 1rem; color: var(--text-muted);">© 2026 AXIS Holdings. Internal Use Only.</p>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ Toggle
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                item.classList.toggle('open');
+            });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
