@@ -640,31 +640,272 @@
             font-size: 0.9rem;
         }
 
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
+            /* Navigation */
             nav {
-                padding: 1rem;
+                padding: 0.75rem 1rem;
+            }
+
+            .mobile-menu-btn {
+                display: block;
             }
 
             .nav-links {
                 display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(10, 10, 15, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 1rem;
+                border-bottom: 1px solid var(--border-color);
             }
 
+            .nav-links.open {
+                display: flex;
+            }
+
+            .nav-links li {
+                margin: 0;
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 1rem;
+                border-bottom: 1px solid var(--border-color);
+            }
+
+            /* Hero */
             .hero {
-                padding: 6rem 1rem 3rem;
+                padding: 5rem 1.25rem 2.5rem;
+                min-height: auto;
             }
 
+            .hero h1 {
+                font-size: 2rem;
+                line-height: 1.3;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .hero-badge {
+                font-size: 0.75rem;
+                padding: 0.4rem 0.8rem;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+
+            .hero-cta .btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            /* Sections */
+            section {
+                padding: 2.5rem 1rem;
+            }
+
+            .section-header h2 {
+                font-size: 1.5rem;
+            }
+
+            .section-header p {
+                font-size: 0.95rem;
+            }
+
+            /* Problems */
             .problems {
-                padding: 2rem;
+                padding: 1.5rem;
+            }
+
+            .problem-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .problem-card {
+                padding: 1.25rem;
+            }
+
+            .problem-card h3 {
+                font-size: 1rem;
+            }
+
+            /* Comparison Table - Stack on mobile */
+            .comparison {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .comparison table {
+                min-width: 100%;
+                font-size: 0.85rem;
+            }
+
+            .comparison th,
+            .comparison td {
+                padding: 0.75rem 0.5rem;
+            }
+
+            /* Features */
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .feature-card {
+                padding: 1.5rem;
+            }
+
+            /* Tools */
+            .tools-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .tool-card {
+                padding: 1.5rem;
+            }
+
+            /* Steps */
+            .steps {
+                gap: 1rem;
             }
 
             .step {
                 flex-direction: column;
+                gap: 0.75rem;
+            }
+
+            .step-number {
+                width: 36px;
+                height: 36px;
+                font-size: 0.9rem;
+            }
+
+            .step-content h3 {
+                font-size: 1.1rem;
+            }
+
+            .step-time {
+                font-size: 0.75rem;
+            }
+
+            /* Code blocks */
+            .code-block {
+                padding: 1rem;
+                margin: 0.75rem 0;
+            }
+
+            .code-block pre {
+                font-size: 0.75rem;
+            }
+
+            .copy-btn {
+                position: relative;
+                top: 0;
+                right: 0;
+                margin-top: 0.75rem;
+                width: 100%;
+                justify-content: center;
+            }
+
+            /* Prompt grid */
+            .prompt-grid {
+                grid-template-columns: 1fr;
                 gap: 1rem;
             }
 
-            .prompt-grid {
-                grid-template-columns: 1fr;
+            .prompt-card {
+                padding: 1rem;
+            }
+
+            .prompt-header h4 {
+                font-size: 1rem;
+            }
+
+            .prompt-content {
+                padding: 0.75rem;
+            }
+
+            .prompt-content pre {
+                font-size: 0.8rem;
+            }
+
+            /* FAQ */
+            .faq-list {
+                gap: 0.75rem;
+            }
+
+            .faq-question {
+                padding: 1rem;
+                font-size: 0.95rem;
+            }
+
+            .faq-answer {
+                padding: 0 1rem;
+            }
+
+            .faq-item.open .faq-answer {
+                padding: 0 1rem 1rem;
+            }
+
+            /* Footer */
+            footer {
+                padding: 2.5rem 1.25rem;
+            }
+
+            .footer-cta h2 {
+                font-size: 1.5rem;
+            }
+
+            /* Buttons */
+            .btn {
+                padding: 0.875rem 1.5rem;
+                font-size: 0.95rem;
+            }
+
+            /* Inline styles in setup section */
+            [style*="padding: 1.5rem"] {
+                padding: 1rem !important;
+            }
+
+            ol {
+                padding-left: 1.25rem !important;
+            }
+        }
+
+        /* Extra small screens */
+        @media (max-width: 375px) {
+            .hero h1 {
+                font-size: 1.75rem;
+            }
+
+            .section-header h2 {
+                font-size: 1.3rem;
+            }
+
+            .code-block pre {
+                font-size: 0.7rem;
             }
         }
 
@@ -694,6 +935,7 @@
 
     <nav>
         <div class="logo">🧠 Second Brain</div>
+        <button class="mobile-menu-btn" aria-label="メニューを開く">☰</button>
         <ul class="nav-links">
             <li><a href="#problem">課題</a></li>
             <li><a href="#features">できること</a></li>
@@ -1263,6 +1505,23 @@ AIルールファイルを作成してください。
     </footer>
 
     <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('open');
+            mobileMenuBtn.textContent = navLinks.classList.contains('open') ? '✕' : '☰';
+        });
+
+        // Close menu when clicking a link
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('open');
+                mobileMenuBtn.textContent = '☰';
+            });
+        });
+
         // FAQ Toggle
         document.querySelectorAll('.faq-question').forEach(question => {
             question.addEventListener('click', () => {
