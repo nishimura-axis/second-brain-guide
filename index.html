@@ -640,6 +640,80 @@
             font-size: 0.9rem;
         }
 
+        /* User Type Selector */
+        .user-type-selector {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-bottom: 3rem;
+        }
+
+        .user-type-card {
+            background: var(--card-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+            width: 280px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .user-type-card:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-4px);
+            box-shadow: var(--glow);
+        }
+
+        .user-type-card.selected {
+            border-color: var(--accent-primary);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .user-type-card .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .user-type-card h4 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .user-type-card p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        .setup-content {
+            display: none;
+        }
+
+        .setup-content.active {
+            display: block;
+        }
+
+        .skipped-step {
+            opacity: 0.5;
+            position: relative;
+        }
+
+        .skipped-step::after {
+            content: "✅ スキップ（既に完了済み）";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--accent-primary);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-weight: 500;
+            z-index: 10;
+        }
+
         /* Mobile Menu Button */
         .mobile-menu-btn {
             display: none;
@@ -653,6 +727,23 @@
 
         /* Responsive */
         @media (max-width: 768px) {
+            /* User Type Selector */
+            .user-type-selector {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            .user-type-card {
+                width: 100%;
+                max-width: 300px;
+                padding: 1.5rem;
+            }
+
+            .user-type-card .icon {
+                font-size: 2rem;
+            }
+
             /* Navigation */
             nav {
                 padding: 0.75rem 1rem;
@@ -1104,6 +1195,23 @@
             <p>30分程度で完了します。大部分はAIが自動で行います。</p>
         </div>
 
+        <!-- ユーザータイプ選択 -->
+        <div class="user-type-selector">
+            <div class="user-type-card selected" data-type="beginner" onclick="selectUserType('beginner')">
+                <div class="icon">🆕</div>
+                <h4>はじめての方</h4>
+                <p>Cursor・GitHubを<br>使うのが初めて</p>
+            </div>
+            <div class="user-type-card" data-type="experienced" onclick="selectUserType('experienced')">
+                <div class="icon">💻</div>
+                <h4>経験者の方</h4>
+                <p>Cursor・GitHubを<br>使ったことがある</p>
+            </div>
+        </div>
+
+        <!-- 初心者向けコンテンツ -->
+        <div id="beginner-content" class="setup-content active">
+
         <!-- あなたがやること vs AIがやること -->
         <div class="comparison" style="margin-bottom: 3rem;">
             <table>
@@ -1377,6 +1485,200 @@ AIルールファイルを作成してください。
                 </div>
             </div>
         </div>
+        </div><!-- /beginner-content -->
+
+        <!-- 経験者向けコンテンツ -->
+        <div id="experienced-content" class="setup-content">
+        
+        <!-- あなたがやること vs AIがやること（経験者向け） -->
+        <div class="comparison" style="margin-bottom: 3rem;">
+            <table>
+                <thead>
+                    <tr>
+                        <th>👤 あなたがやること（手動）</th>
+                        <th>🤖 AIがやること（自動）</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Obsidianのインストール</td>
+                        <td class="highlight">Vaultフォルダ構造の作成</td>
+                    </tr>
+                    <tr>
+                        <td>アクセストークンの確認</td>
+                        <td class="highlight">Git初期設定・リポジトリ連携</td>
+                    </tr>
+                    <tr>
+                        <td>CursorでVaultを開く</td>
+                        <td class="highlight">ルールファイルの作成</td>
+                    </tr>
+                    <tr>
+                        <td>AIに指示を出す</td>
+                        <td class="highlight">以降のすべての操作</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p style="text-align: center; margin-top: 1rem; color: var(--accent-primary); font-weight: 500;">
+                ⏱️ 約15分で完了（Cursor/GitHubの設定をスキップ）
+            </p>
+        </div>
+        
+        <div class="steps">
+            <!-- STEP 1: Obsidianのインストール -->
+            <div class="step">
+                <div class="step-content">
+                    <h3>Obsidianのインストール</h3>
+                    <p>情報を保管するノートアプリをインストールします。</p>
+                    <span class="step-time">⏱️ 約5分</span>
+                    
+                    <div style="margin-top: 1.5rem; padding: 1.5rem; background: var(--bg-tertiary); border-radius: 12px; border-left: 3px solid var(--accent-primary);">
+                        <ol style="margin: 0; padding-left: 1.5rem; color: var(--text-secondary);">
+                            <li style="margin-bottom: 0.75rem;">ブラウザで <a href="https://obsidian.md" target="_blank" style="color: var(--accent-primary);">https://obsidian.md</a> にアクセス</li>
+                            <li style="margin-bottom: 0.75rem;">画面中央の「<strong style="color: var(--text-primary);">Get Obsidian for free</strong>」ボタンをクリック</li>
+                            <li style="margin-bottom: 0.75rem;">あなたのパソコンに合わせてダウンロード
+                                <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
+                                    <li>Macの場合：「Download for macOS」</li>
+                                    <li>Windowsの場合：「Download for Windows」</li>
+                                </ul>
+                            </li>
+                            <li style="margin-bottom: 0.75rem;">ダウンロードしたファイルをダブルクリックして開く</li>
+                            <li style="margin-bottom: 0;">画面の指示に従ってインストール</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 2: Vaultの作成 -->
+            <div class="step">
+                <div class="step-content">
+                    <h3>Vaultの作成</h3>
+                    <p>Obsidianで新しいVault（保管庫）を作成します。</p>
+                    <span class="step-time">⏱️ 約3分</span>
+                    
+                    <div style="margin-top: 1.5rem; padding: 1.5rem; background: var(--bg-tertiary); border-radius: 12px; border-left: 3px solid var(--accent-primary);">
+                        <ol style="margin: 0; padding-left: 1.5rem; color: var(--text-secondary);">
+                            <li style="margin-bottom: 0.75rem;">Obsidianを起動</li>
+                            <li style="margin-bottom: 0.75rem;">「<strong style="color: var(--text-primary);">Create new vault</strong>」をクリック</li>
+                            <li style="margin-bottom: 0.75rem;">以下を入力：
+                                <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
+                                    <li><strong>Vault name</strong>: <code style="background: var(--bg-primary); padding: 0.2rem 0.5rem; border-radius: 4px;">MyVault</code></li>
+                                    <li><strong>Location</strong>: ドキュメントフォルダを選択</li>
+                                </ul>
+                            </li>
+                            <li style="margin-bottom: 0.75rem;">「Create」をクリック</li>
+                            <li style="margin-bottom: 0;"><strong style="color: var(--accent-primary);">作成したらObsidianは閉じてOK</strong></li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 3: CursorでVaultを開く -->
+            <div class="step">
+                <div class="step-content">
+                    <h3>CursorでVaultを開く</h3>
+                    <p>既にインストール済みのCursorで、作成したVaultフォルダを開きます。</p>
+                    <span class="step-time">⏱️ 約1分</span>
+                    
+                    <div style="margin-top: 1.5rem; padding: 1.5rem; background: var(--bg-tertiary); border-radius: 12px; border-left: 3px solid var(--accent-primary);">
+                        <ol style="margin: 0; padding-left: 1.5rem; color: var(--text-secondary);">
+                            <li style="margin-bottom: 0.75rem;">Cursorを起動</li>
+                            <li style="margin-bottom: 0.75rem;">「<strong style="color: var(--text-primary);">File</strong>」→「<strong style="color: var(--text-primary);">Open Folder</strong>」</li>
+                            <li style="margin-bottom: 0;">作成したVaultフォルダを選択して開く</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 4: アクセストークンの確認 -->
+            <div class="step">
+                <div class="step-content">
+                    <h3>アクセストークンの確認 <span style="color: #ef4444; font-size: 0.8em;">⚠️ 重要</span></h3>
+                    <p>既存のトークンを使うか、新しく発行するか選んでください。</p>
+                    <span class="step-time">⏱️ 約3分</span>
+                    
+                    <div style="margin-top: 1.5rem; padding: 1.5rem; background: var(--bg-tertiary); border-radius: 12px; border-left: 3px solid var(--accent-primary);">
+                        <p style="color: var(--text-primary); font-weight: 500; margin-bottom: 1rem;">🔹 既存のトークンを使う場合</p>
+                        <ul style="margin: 0 0 1.5rem; padding-left: 1.5rem; color: var(--text-secondary);">
+                            <li style="margin-bottom: 0.5rem;">保存しているトークンに <code style="background: var(--bg-primary); padding: 0.2rem 0.5rem; border-radius: 4px;">repo</code> 権限があればそのまま使えます</li>
+                            <li style="margin-bottom: 0;">トークンを控えておいてください</li>
+                        </ul>
+                        
+                        <p style="color: var(--text-primary); font-weight: 500; margin-bottom: 1rem;">🔹 新しく発行する場合</p>
+                        <ol style="margin: 0; padding-left: 1.5rem; color: var(--text-secondary);">
+                            <li style="margin-bottom: 0.5rem;"><a href="https://github.com/settings/tokens/new" target="_blank" style="color: var(--accent-primary);">https://github.com/settings/tokens/new</a> にアクセス</li>
+                            <li style="margin-bottom: 0.5rem;"><strong>Note</strong>: <code style="background: var(--bg-primary); padding: 0.2rem 0.5rem; border-radius: 4px;">MyVault-Cursor</code></li>
+                            <li style="margin-bottom: 0.5rem;"><strong>Expiration</strong>: 「No expiration」</li>
+                            <li style="margin-bottom: 0.5rem;"><strong>Select scopes</strong>: <code style="background: var(--bg-primary); padding: 0.2rem 0.5rem; border-radius: 4px;">repo</code> にチェック</li>
+                            <li style="margin-bottom: 0;">「Generate token」をクリックしてコピー</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 5: AIに初期セットアップを依頼 -->
+            <div class="step">
+                <div class="step-content">
+                    <h3>AIに初期セットアップを依頼 <span style="color: #22c55e; font-size: 0.8em;">🎉 ここからAIにお任せ！</span></h3>
+                    <p>以下のプロンプトをCursorのチャットにコピー＆ペーストして送信するだけ。</p>
+                    <span class="step-time">⏱️ 約3分</span>
+                    
+                    <div style="margin-top: 1rem; padding: 1rem; background: var(--bg-tertiary); border-radius: 8px;">
+                        <p style="margin: 0 0 0.5rem; color: var(--text-secondary); font-size: 0.9rem;">
+                            💡 <strong>チャットパネルの開き方</strong>：<code style="background: var(--bg-primary); padding: 0.2rem 0.5rem; border-radius: 4px;">Cmd + L</code>（Mac）または <code style="background: var(--bg-primary); padding: 0.2rem 0.5rem; border-radius: 4px;">Ctrl + L</code>（Windows）
+                        </p>
+                    </div>
+                    
+                    <div class="code-block">
+                        <pre>
+# 第二の脳 初期セットアップをお願いします
+
+## お願いしたいこと
+このVaultを「第二の脳」として使えるようにセットアップしてください。
+
+## 私の情報
+- 名前：（あなたの名前）
+- GitHubユーザー名：（あなたのGitHubユーザー名）
+- アクセストークン：（取得したトークン）
+
+## やってほしいこと
+1. Vaultのフォルダ構造を作成
+2. .cursorrules（AIルールファイル）を作成
+3. GitHubリポジトリを作成して連携
+4. 初回コミット＆プッシュ
+
+よろしくお願いします！</pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 6: 動作確認 -->
+            <div class="step">
+                <div class="step-content">
+                    <h3>セットアップ完了後の確認</h3>
+                    <p>セットアップが完了したら、AIに以下を送信して動作確認しましょう。</p>
+                    <span class="step-time">⏱️ 約2分</span>
+                    
+                    <div class="code-block">
+                        <pre>
+セットアップが完了したので、以下を確認してください：
+
+1. Vaultのフォルダ構造が正しく作成されているか
+2. .cursorrules が正しく設定されているか
+3. GitHubに正しく連携されているか
+
+問題があれば教えてください。</pre>
+                    </div>
+                    
+                    <div style="margin-top: 1.5rem; padding: 1.5rem; background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%); border-radius: 12px; border: 1px solid var(--accent-primary); text-align: center;">
+                        <span style="font-size: 2rem;">🎉</span>
+                        <p style="margin: 0.5rem 0 0; color: var(--text-primary); font-size: 1.1rem; font-weight: 500;">セットアップ完了です！</p>
+                        <p style="margin: 0.5rem 0 0; color: var(--text-secondary); font-size: 0.9rem;">あなたの「第二の脳」が使えるようになりました</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div><!-- /experienced-content -->
+
     </section>
 
     <section id="prompts">
@@ -1506,6 +1808,21 @@ AIルールファイルを作成してください。
     </footer>
 
     <script>
+        // User Type Selector
+        function selectUserType(type) {
+            // Update card selection
+            document.querySelectorAll('.user-type-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            document.querySelector(`.user-type-card[data-type="${type}"]`).classList.add('selected');
+            
+            // Show/hide content
+            document.querySelectorAll('.setup-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.getElementById(`${type}-content`).classList.add('active');
+        }
+
         // Mobile Menu Toggle
         const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
         const navLinks = document.querySelector('.nav-links');
