@@ -343,6 +343,99 @@
             box-shadow: var(--glow);
         }
 
+        /* Use Cases Section */
+        .use-cases-section {
+            margin-top: 4rem;
+            padding-top: 3rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .use-cases-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .use-case-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .use-case-card:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-4px);
+            box-shadow: var(--glow);
+        }
+
+        .use-case-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .use-case-icon {
+            font-size: 1.5rem;
+        }
+
+        .use-case-scene {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .use-case-situation {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .use-case-action, .use-case-result {
+            margin-bottom: 0.75rem;
+        }
+
+        .use-case-action .label, .use-case-result .label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.25rem;
+            display: block;
+        }
+
+        .use-case-action .label {
+            color: var(--accent-primary);
+        }
+
+        .use-case-result .label {
+            color: #22c55e;
+        }
+
+        .use-case-action p, .use-case-result p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .use-case-result {
+            background: rgba(34, 197, 94, 0.1);
+            padding: 0.75rem;
+            border-radius: 8px;
+            margin-bottom: 0;
+        }
+
+        .use-case-result p {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
         .feature-icon {
             width: 60px;
             height: 60px;
@@ -733,6 +826,16 @@
 
         /* Responsive */
         @media (max-width: 768px) {
+            /* Use Cases Grid */
+            .use-cases-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .use-cases-section {
+                margin-top: 2rem;
+                padding-top: 2rem;
+            }
+
             /* User Type Selector */
             .user-type-selector {
                 flex-direction: column;
@@ -1164,6 +1267,110 @@
                 <div class="feature-icon">🔗</div>
                 <h3>知識の連結</h3>
                 <p>バラバラだった情報がつながり、新しいアイデアや気づきが生まれる。</p>
+            </div>
+        </div>
+
+        <!-- 具体的な使用シーン -->
+        <div class="use-cases-section">
+            <h3 style="text-align: center; font-size: 1.5rem; margin-bottom: 2rem; color: var(--text-primary);">
+                💼 実際の業務ではこう使う
+            </h3>
+            <div class="use-cases-grid">
+                <div class="use-case-card">
+                    <div class="use-case-header">
+                        <span class="use-case-icon">🔍</span>
+                        <span class="use-case-scene">情報検索</span>
+                    </div>
+                    <div class="use-case-situation">「あの話どこだっけ...」</div>
+                    <div class="use-case-action">
+                        <span class="label">💬 AIに言うだけ</span>
+                        <p>「〇〇について教えて」</p>
+                    </div>
+                    <div class="use-case-result">
+                        <span class="label">✨ 結果</span>
+                        <p>関連ノートを即座に提示</p>
+                    </div>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="use-case-header">
+                        <span class="use-case-icon">📝</span>
+                        <span class="use-case-scene">MTG準備</span>
+                    </div>
+                    <div class="use-case-situation">会議前に論点を整理したい</div>
+                    <div class="use-case-action">
+                        <span class="label">💬 AIに言うだけ</span>
+                        <p>「今日のMTGの準備して」</p>
+                    </div>
+                    <div class="use-case-result">
+                        <span class="label">✨ 結果</span>
+                        <p>過去の決定事項・論点を要約</p>
+                    </div>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="use-case-header">
+                        <span class="use-case-icon">📋</span>
+                        <span class="use-case-scene">議事録作成</span>
+                    </div>
+                    <div class="use-case-situation">MTG後の記録を残したい</div>
+                    <div class="use-case-action">
+                        <span class="label">💬 文字起こしをコピペするだけ</span>
+                        <p>自動収録アプリの文字起こしを貼り付け</p>
+                    </div>
+                    <div class="use-case-result">
+                        <span class="label">✨ 結果</span>
+                        <p>議事録を自動生成・整理して保存</p>
+                    </div>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="use-case-header">
+                        <span class="use-case-icon">🤔</span>
+                        <span class="use-case-scene">壁打ち</span>
+                    </div>
+                    <div class="use-case-situation">考えを整理したい</div>
+                    <div class="use-case-action">
+                        <span class="label">💬 AIに言うだけ</span>
+                        <p>「〇〇について壁打ちしたい」</p>
+                    </div>
+                    <div class="use-case-result">
+                        <span class="label">✨ 結果</span>
+                        <p>質問しながら思考を整理</p>
+                    </div>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="use-case-header">
+                        <span class="use-case-icon">📊</span>
+                        <span class="use-case-scene">報告書作成</span>
+                    </div>
+                    <div class="use-case-situation">週報・月報を書きたい</div>
+                    <div class="use-case-action">
+                        <span class="label">💬 AIに言うだけ</span>
+                        <p>「今週の振り返りを作って」</p>
+                    </div>
+                    <div class="use-case-result">
+                        <span class="label">✨ 結果</span>
+                        <p>進捗ログから自動生成</p>
+                    </div>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="use-case-header">
+                        <span class="use-case-icon">💡</span>
+                        <span class="use-case-scene">アイデア整理</span>
+                    </div>
+                    <div class="use-case-situation">思いついたことを残したい</div>
+                    <div class="use-case-action">
+                        <span class="label">💬 AIに言うだけ</span>
+                        <p>「これメモして」</p>
+                    </div>
+                    <div class="use-case-result">
+                        <span class="label">✨ 結果</span>
+                        <p>適切な場所に自動で整理・保存</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
