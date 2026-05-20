@@ -1190,6 +1190,7 @@
             <li><a href="#features">できること</a></li>
             <li><a href="#tools">構成</a></li>
             <li><a href="#setup">セットアップ</a></li>
+            <li><a href="#troubleshooting">詰まり</a></li>
             <li><a href="#agents">AGENTS.md</a></li>
             <li><a href="#faq">FAQ</a></li>
         </ul>
@@ -1490,6 +1491,8 @@
                         <div class="note-box">
                             <ol style="margin: 0; padding-left: 1.5rem;">
                                 <li>講義で案内された手順に沿ってCodexを開く</li>
+                                <li>CodexのGitHubプラグインを接続する</li>
+                                <li>macOSの「システム設定 → プライバシーとセキュリティ → フルディスクアクセス」でCodexにアクセス許可を付ける</li>
                                 <li>作業フォルダとして作成したVaultを選ぶ</li>
                                 <li>例: <code>~/Documents/Obsidian/MyVault</code></li>
                                 <li>CodexにVault内のファイルを読ませられる状態になればOK</li>
@@ -1505,9 +1508,11 @@
                         <span class="step-time">⏱️ 約10分</span>
                         <div class="note-box">
                             <ol style="margin: 0; padding-left: 1.5rem;">
-                                <li>GitHubアカウントを作成、またはログインする</li>
-                                <li>Vault用のリポジトリを <strong>private</strong> で作成する</li>
+                                <li>GitHubアカウントを作成、またはログインする<br><a href="https://github.com/signup" target="_blank" rel="noopener" style="color: var(--accent-primary);">https://github.com/signup</a></li>
+                                <li>ログイン済みの場合は <a href="https://github.com/login" target="_blank" rel="noopener" style="color: var(--accent-primary);">https://github.com/login</a> を確認する</li>
+                                <li>Vault用のリポジトリを <strong>private</strong> で作成する<br><a href="https://github.com/new" target="_blank" rel="noopener" style="color: var(--accent-primary);">https://github.com/new</a></li>
                                 <li>GitHub Desktop、または講義で案内された方法でVaultを同期する</li>
+                                <li>CodexのGitHubプラグインを接続済みの場合、GitHub API操作はプラグインを優先する</li>
                                 <li>アクセストークンや認証情報は、この資料やAGENTS.mdには書かない</li>
                             </ol>
                         </div>
@@ -1607,10 +1612,53 @@
         </div>
     </section>
 
+
+    <section id="troubleshooting">
+        <div class="section-header">
+            <h2>🧯 詰まりやすいところ</h2>
+            <p>Codexプラグイン前提では、GitHub認証とローカルファイル権限が別物です。ここを先に潰すとセットアップが速くなります。</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🔐</div>
+                <h3>GitHub登録・ログイン</h3>
+                <p>アカウント作成は <a href="https://github.com/signup" target="_blank" rel="noopener" style="color: var(--accent-primary);">github.com/signup</a>。リポジトリ作成は <a href="https://github.com/new" target="_blank" rel="noopener" style="color: var(--accent-primary);">github.com/new</a>。公開設定は必ずprivate。</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔌</div>
+                <h3>Codex GitHubプラグイン</h3>
+                <p>GitHub API操作はプラグイン接続で進める。Classic tokenを資料に貼る運用はしない。接続できていない時は、Codex側のプラグイン接続状態を先に確認する。</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🗂️</div>
+                <h3>フルディスクアクセス</h3>
+                <p>CodexがDocuments配下のVaultを読めない、ファイル作成できない、Git操作で権限エラーが出る場合は、macOSのフルディスクアクセスにCodexを追加して再起動する。</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🧭</div>
+                <h3>原因の切り分け</h3>
+                <p>GitHubプラグインの認証は「GitHub API用」。ローカルVaultを読む権限、ローカルgitの認証、GitHub Desktopの同期権限は別。どこで失敗しているかを分けて見る。</p>
+            </div>
+        </div>
+        <div class="comparison" style="margin-top: 2rem;">
+            <table>
+                <thead>
+                    <tr><th>詰まり</th><th>原因候補</th><th>先に見る場所</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Vaultが読めない</td><td>macOSのファイル権限不足</td><td class="highlight">フルディスクアクセス / Files and Folders</td></tr>
+                    <tr><td>GitHubリポジトリ作成で止まる</td><td>プラグイン未接続、権限不足</td><td class="highlight">CodexのGitHubプラグイン接続状態</td></tr>
+                    <tr><td>pushで止まる</td><td>remote未設定、ローカルgit認証未完了</td><td class="highlight">git remote -v / GitHub Desktop / SSH設定</td></tr>
+                    <tr><td>Classic token時代より詰まる</td><td>手動トークンは単純だが、権限分離が見えにくい</td><td class="highlight">プラグイン認証とローカル権限を分けて確認</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
     <section id="agents">
         <div class="section-header">
             <h2>🧭 AGENTS.mdを最初から入れる</h2>
-            <p>講義を受ける人がゼロから試行錯誤しなくていいように、実運用で品質が出ているAGENTS.md設定を初期状態として渡します。</p>
+            <p>講義を受ける人がゼロから試行錯誤しなくていいように、実運用のAGENTS.mdから個人名・端末固有・デプロイ自動化などを外した配布版を初期状態として渡します。</p>
         </div>
         <div class="difference-grid">
             <div class="difference-card">
@@ -1631,6 +1679,7 @@
                     <li>確認が必要な作業と自律実行できる作業を分ける</li>
                     <li>Vaultのテンプレート、YAML、リンクルールを守る</li>
                     <li>ChatWork共有文やHTML出力の確認を標準化する</li>
+                    <li>git fetch / status / logで状態を確認してから作業する</li>
                 </ul>
             </div>
         </div>
@@ -1655,6 +1704,11 @@
 - 小さな調査、ログ確認、軽微修正、lint / test / build は自律実行してよい
 - 要件変更、設計変更、外部送信、デプロイ、破壊的操作、本番データ、認証情報、課金に関わる作業は確認する
 
+## セッション開始時
+- gitリポ内の作業では git fetch origin → git status -sb を確認する
+- gitリポ内の作業では git log --oneline -20 を確認する
+- gitリポでない場所では、必要なファイルだけ読んで進める
+
 ## Vault運用
 - 新規ノートは60_Templatesを使う
 - YAMLフロントマターを付ける
@@ -1662,6 +1716,11 @@
 - 不明点は TODO: として残す
 - 事実と解釈を分け、解釈は Assumption: と明示する
 - PJに関係する作業は、関連PJメモの更新要否を確認する
+
+## Git運用
+- featureブランチで進める
+- main / default に直接変更を積まない
+- push前に git diff --cached で機密混入を確認する
 
 ## Codexへの期待
 - 調査、整理、編集、検証、共有文作成を支援する
