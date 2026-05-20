@@ -1188,6 +1188,7 @@
             <li><a href="#problem">課題</a></li>
             <li><a href="#solution">全体像</a></li>
             <li><a href="#features">できること</a></li>
+            <li><a href="#usage">活用例</a></li>
             <li><a href="#tools">構成</a></li>
             <li><a href="#setup">セットアップ</a></li>
             <li><a href="#troubleshooting">詰まり</a></li>
@@ -1362,6 +1363,177 @@
                     <div class="use-case-action"><span class="label">💬 Codexに言う</span><p>「セルフレビューして、見づらい所を直して」</p></div>
                     <div class="use-case-result"><span class="label">✨ 結果</span><p>視認性・情報設計・受講者への伝わり方を改善</p></div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="usage">
+        <div class="section-header">
+            <h2>🧪 実際にどう使うか</h2>
+            <p>AIに慣れていない人は、まずこのまま真似してください。うまい依頼文を考えるより、型を使う方が早いです。</p>
+        </div>
+
+        <div class="difference-grid">
+            <div class="difference-card">
+                <h3>まず覚える依頼の型</h3>
+                <ul>
+                    <li>何をしたいかを1行で言う</li>
+                    <li>読んでほしい場所を指定する</li>
+                    <li>出してほしい形を指定する</li>
+                    <li>不明点は質問して、と添える</li>
+                </ul>
+            </div>
+            <div class="difference-card">
+                <h3>依頼テンプレ</h3>
+                <ul>
+                    <li>目的: 何を決めたい / 作りたい</li>
+                    <li>参照: 20_Context / 30_Projects / 70_Meetings</li>
+                    <li>出力: 要点 / 選択肢 / TODO / 共有文</li>
+                    <li>制約: 推測で埋めない / 不明点は質問</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="prompt-grid" style="margin-top: 2rem;">
+            <div class="prompt-card">
+                <h3>朝の状況整理</h3>
+                <div class="prompt-content"><pre>今日やることを整理したいです。
+30_Projectsの関連PJメモを読んで、以下に分けて出してください。
+
+1. 今日進めるべきこと
+2. 人間が判断すること
+3. Codexに任せられること
+4. 詰まりそうな点
+
+不明点は推測せず、確認質問にしてください。</pre></div>
+            </div>
+            <div class="prompt-card">
+                <h3>PJメモ更新</h3>
+                <div class="prompt-content"><pre>この作業内容をもとに、関連PJメモを更新してください。
+
+更新してほしい項目:
+- progress
+- next_action
+- blocked_by
+- needs_human_decision
+- 進捗ログ
+
+既存の書き方に合わせてください。
+判断が必要な点は勝手に決めず、TODO: にしてください。</pre></div>
+            </div>
+            <div class="prompt-card">
+                <h3>MTG準備</h3>
+                <div class="prompt-content"><pre>次のMTGの準備をしてください。
+関連するPJメモ、過去のMTGログ、Contextを読んで、以下を出してください。
+
+1. 前回までの決定事項
+2. 今回確認すべき論点
+3. 相手に聞く質問
+4. 自分が決めるべきこと
+5. MTG後に更新すべきメモ</pre></div>
+            </div>
+            <div class="prompt-card">
+                <h3>議事録整理</h3>
+                <div class="prompt-content"><pre>以下の文字起こしをMTGログに整理してください。
+
+出力形式:
+- 決定事項
+- TODO
+- 未決事項
+- 関連PJ
+- 次回確認すること
+
+事実と解釈を分けてください。
+不明点は TODO: にしてください。
+
+文字起こし:
+（ここに貼る）</pre></div>
+            </div>
+            <div class="prompt-card">
+                <h3>ChatWork共有文</h3>
+                <div class="prompt-content"><pre>この内容をChatWorkに貼れる共有文にしてください。
+
+条件:
+- 事実、依頼、確認事項を分ける
+- 一文を短くする
+- 必要なところだけ [info] を使う
+- 送信はしない
+
+対象:
+（共有したい内容を貼る）</pre></div>
+            </div>
+            <div class="prompt-card">
+                <h3>HTML資料化</h3>
+                <div class="prompt-content"><pre>この内容を社内説明用のHTMLにしてください。
+
+対象者:
+AIに慣れていない人
+
+重視すること:
+- 最初に結論
+- 図解を入れる
+- コピペで使えるプロンプトを入れる
+- 文字を詰め込みすぎない
+- 完了前にブラウザで開いて見づらい箇所を直す
+
+素材:
+（ここに貼る）</pre></div>
+            </div>
+            <div class="prompt-card">
+                <h3>セルフレビュー</h3>
+                <div class="prompt-content"><pre>この成果物をセルフレビューしてください。
+
+見る観点:
+- 初心者が迷わないか
+- 手順が抜けていないか
+- 文字が詰まりすぎていないか
+- 図解が必要な箇所はないか
+- コピペ用プロンプトとしてそのまま使えるか
+
+問題があれば修正までしてください。</pre></div>
+            </div>
+            <div class="prompt-card">
+                <h3>AXAD確認</h3>
+                <div class="prompt-content"><pre>AXAD MCPで取得できる範囲を確認し、広告データを読み取り専用で見てください。
+
+出力してほしいもの:
+1. 数字の事実
+2. 気になる変化
+3. あり得る原因
+4. 次に確認すべきこと
+5. 人間が判断すること
+
+推測は Assumption: と明示してください。</pre></div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-header" style="padding-top: 0; margin-bottom: 2rem;">
+            <h2>🧩 よく使うものは型にする</h2>
+            <p>2回以上使う依頼は、毎回考えずにテンプレートやスキルとして残すと一気に楽になります。</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">📣</div>
+                <h3>ChatWork共有文</h3>
+                <p>「CW共有」「ChatWorkで共有する文面」と言えば、共有文の型で作る。事実・依頼・確認事項を分ける。</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📝</div>
+                <h3>PJメモ更新</h3>
+                <p>作業後に、progress、next_action、blocked_by、needs_human_decisionを更新する型を使う。</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🌐</div>
+                <h3>HTML確認</h3>
+                <p>HTMLを作ったら必ずブラウザで開く。見づらい箇所、リンク切れ、ダウンロード導線を確認する。</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔁</div>
+                <h3>繰り返し作業の自動化</h3>
+                <p>毎回同じ依頼をしているものは、60_Templates、AGENTS.md、スラッシュコマンド、Skill化の候補にする。</p>
             </div>
         </div>
     </section>
