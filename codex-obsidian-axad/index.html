@@ -1752,6 +1752,27 @@
                 <p>Obsidianフォルダ作成、テンプレート作成、広告コンテキスト配置まで依頼するプロンプト。</p>
                 <a class="btn btn-secondary" href="downloads/setup_obsidian_codex_prompt.md" download>ダウンロード</a>
             </div>
+            <div class="tool-card">
+                <div class="tool-icon">📋</div>
+                <h3>AGENTS.md作成</h3>
+                <div class="role">追加プロンプト</div>
+                <p>講義後のセットアップ作業で使うコピペ用プロンプト。</p>
+                <a class="btn btn-secondary" href="downloads/create_agents_prompt.md" download>ダウンロード</a>
+            </div>
+            <div class="tool-card">
+                <div class="tool-icon">📋</div>
+                <h3>GitHub連携</h3>
+                <div class="role">追加プロンプト</div>
+                <p>講義後のセットアップ作業で使うコピペ用プロンプト。</p>
+                <a class="btn btn-secondary" href="downloads/connect_github_prompt.md" download>ダウンロード</a>
+            </div>
+            <div class="tool-card">
+                <div class="tool-icon">📋</div>
+                <h3>10分自動同期</h3>
+                <div class="role">追加プロンプト</div>
+                <p>講義後のセットアップ作業で使うコピペ用プロンプト。</p>
+                <a class="btn btn-secondary" href="downloads/autosync_prompt.md" download>ダウンロード</a>
+            </div>
         </div>
         <div class="prompt-grid">
             <div class="prompt-card">
@@ -1836,6 +1857,344 @@
 5. Codexが参照すべき入口が分かるか
 
 最後に、足りないもの・次に整えるべきものを一覧で出してください。</pre></div>
+            </div>
+            <div class="prompt-card">
+                <h3>AGENTS.md作成</h3>
+                <div class="prompt-content"><pre>Obsidian Vault用のAGENTS.mdを作成してください。
+
+目的:
+CodexがこのVaultを読む時に、毎回同じ品質で作業できるようにするためです。
+
+作成先:
+Vaultルートの AGENTS.md
+
+以下の内容で作成してください。
+
+---
+
+# Obsidian Vault 用 AGENTS.md
+
+## 役割
+
+あなたは、ユーザーの判断を代行するのではなく、判断材料を構造化して差し出す補助者です。
+
+- 盲点を指摘する
+- 答えを押し付けない
+- 選択肢とトレードオフを見せる
+- 不明点を推測で埋めず、確認する
+
+## 行動原則
+
+1. 事実で動く。推測で動かない
+2. 知らないことは「知らない」と言う
+3. 既存パターンを尊重する
+4. 頼まれたこと以外を勝手に足さない
+5. 変更は小さく、影響範囲を明確にする
+6. 結論から入る
+7. 「全部OKです」は疑い、リスクや不足を確認する
+8. ユーザーが言語化に詰まっている時は、問いで引き出す
+
+## 作業の進め方
+
+### 確認が必要な作業
+
+以下は、必ず確認してから進める。
+
+- 要件変更
+- 設計変更
+- デプロイ
+- 外部サービスへの送信
+- Vault内の新規ノート作成
+- 破壊的操作
+- 本番データに関わる操作
+- 認証情報、課金、顧客影響に関わる操作
+- 判断材料が足りず、推測で進めると手戻りが大きい作業
+
+### 自律実行してよい作業
+
+以下は、必要に応じて自律的に進めてよい。
+
+- 読み取り調査
+- 差分確認
+- ログ確認
+- lint / test / build などの検証
+- 既存ファイルの軽微修正
+- 既存パターンに沿った低リスクな修正
+
+ただし、結果と検証内容は必ず報告する。
+
+## Plan → Execute
+
+影響範囲が大きい作業は、まず計画を出す。
+
+1. 目的
+2. 作業範囲
+3. 変更するファイル
+4. リスク
+5. 確認が必要な点
+
+ユーザーの承認後に実行する。
+
+## Vault構造
+
+このVaultは以下の構造で管理する。
+
+MyVault/
+├── 00_Inbox/          # 未整理メモ
+├── 10_Goals/          # 目標管理
+├── 20_Context/        # 事業部・業務コンテキスト
+├── 30_Projects/       # PJ管理
+├── 40_Knowledge/      # 横断ナレッジ
+├── 50_Literature/     # 読書・記事メモ
+├── 60_Templates/      # テンプレート
+├── 70_Meetings/       # MTGログ
+└── 80_Outputs/        # HTMLや共有用成果物
+
+## Vault運用ルール
+
+- 推測・創作を禁止する
+- 不明点は TODO: として残す
+- 事実と解釈を分離する
+- 解釈を書く場合は Assumption: と明示する
+- 新規ノート作成時は、必ず 60_Templates/ のテンプレートを使う
+- 全ノートにYAMLフロントマターを付ける
+- 関連する既存ノートへのリンクを最低1つ付ける
+- 孤立ノートを作らない
+
+## ChatWork共有文
+
+ユーザーが「CW共有」「ChatWorkで共有する文面」「コピペ用」「共有文」と依頼した場合、ChatWorkに貼れる文面を作る。
+
+- 通常テキストを中心にする
+- [info] は要点や依頼事項にだけ使う
+- [code] は一覧、構造、ログ、置換案などに使う
+- 一文を短くする
+- 事実、依頼、確認事項を分ける
+- 送信前に勝手に外部送信しない
+
+## HTML系アウトプット
+
+HTML、仕様書、フロー図、共有用説明ノートなどを作成・更新したら、完了報告前に対象成果物を開く。
+
+## AXAD MCP
+
+AXAD MCPは読み取り専用で使う。
+
+- 広告データの確認
+- 集計
+- 異常候補の抽出
+- レポート観点づくり
+- 判断材料の整理
+
+ルール:
+- キーは本文に書かない
+- 接続情報は別途安全に共有する
+- 取得した情報の共有範囲を確認する
+- 本番変更や外部送信は行わない
+
+## 完了報告
+
+作業完了時は以下を報告する。
+
+- 何をしたか
+- 変更したファイル
+- 検証した内容
+- 残課題
+- PJメモ更新: 済 / 該当なし / 未実施（理由）
+- Dashboard反映: 済 / 不要 / 未実施（理由）
+
+---
+
+作成後、AGENTS.mdの内容を要約し、秘密情報が含まれていないことを確認してください。</pre></div>
+            </div>
+            <div class="prompt-card">
+                <h3>GitHub連携</h3>
+                <div class="prompt-content"><pre>Obsidian Vault と GitHub を連携してください。
+
+前提:
+- GitHubはCodexのGitHubプラグインで接続済みです
+- GitHubの認証トークンをユーザーに入力させる前提にはしないでください
+- トークンや認証情報をAGENTS.md、Vault内ノート、共有資料に書かないでください
+- Obsidian VaultをGitHubでバックアップ・同期できるようにする作業です
+- リポジトリは private で作成・運用してください
+- 過去のClaudeCode版セットアップ資料の考え方を踏襲しつつ、Codexで実行してください
+
+まず以下を確認してください。
+
+1. 現在の作業ディレクトリがObsidian Vaultルートか
+2. .git が存在するか
+3. 既存のremoteが設定されているか
+4. 未コミット変更があるか
+5. AGENTS.md、60_Templates、20_Contextなどがあるか
+6. .gitignore があるか
+
+## まだGit管理されていない場合
+
+以下を実行してください。
+
+1. git init
+2. .gitignore を作成
+3. 機密情報が含まれないように除外設定
+4. 初回コミット
+5. CodexのGitHubプラグインを使って private repository を作成
+6. 作成されたrepositoryをremoteに設定
+7. main ブランチとしてpush
+
+.gitignore には最低限以下を含めてください。
+
+.DS_Store
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.env
+.env.*
+*.key
+*token*
+sa-key.json
+*.pem
+
+## すでにGit管理されている場合
+
+以下を確認してください。
+
+1. git status -sb
+2. git remote -v
+3. git branch --show-current
+4. git log --oneline -5
+
+remoteが未設定なら、CodexのGitHubプラグインで private repository を作成し、remoteを設定してください。
+remoteが設定済みなら、現在の状態を説明し、必要ならpushしてください。
+
+## GitHub連携時のルール
+
+- repository name は MyVault を基本にする
+- 公開設定は必ず private
+- 初回セットアップのみ main に初期コミットしてよい
+- 認証情報、APIキー、トークン、個人情報が含まれていないか確認する
+- stage後に必ず git diff --cached を確認する
+- push前に .gitignore が効いているか確認する
+- GitHub操作はCodex GitHubプラグインを優先する
+- GitHub CLIやトークン手入力は、プラグインで対応できない場合だけ検討する
+- 認証が必要な場面では、勝手にトークン入力を求めず、プラグイン接続状態を確認する
+
+## 初回コミットメッセージ
+
+Initialize Obsidian second brain vault
+
+## 完了後に報告してほしいこと
+
+最後に以下を報告してください。
+
+1. Git管理の状態
+2. GitHub repository URL
+3. remote URL
+4. 現在のブランチ
+5. push済みかどうか
+6. .gitignore に含めた内容
+7. 機密情報チェック結果
+8. 次にやるべきこと
+
+不明点、private repository作成、push、外部公開範囲に関わる操作は、必要に応じて確認してから進めてください。</pre></div>
+            </div>
+            <div class="prompt-card">
+                <h3>10分自動同期</h3>
+                <div class="prompt-content"><pre>Obsidian Vault のGitHub同期を10分ごとに自動実行する設定を作ってください。
+
+前提:
+- このVaultはGitHubと連携済みです
+- GitHubはCodexのGitHubプラグインで接続済みです
+- 自動同期はローカル端末上で動く仕組みにしてください
+- 10分ごとに pull → 変更確認 → commit → push を行う想定です
+- 認証情報やトークンはファイルに書かないでください
+- .env やキー類は絶対に同期対象にしないでください
+
+やってほしいこと:
+
+1. 現在のVaultがGit管理されているか確認する
+   - git status -sb
+   - git remote -v
+   - git branch --show-current
+
+2. .gitignore を確認・必要なら更新する
+
+最低限以下を除外してください。
+
+.DS_Store
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.env
+.env.*
+*.key
+*token*
+sa-key.json
+*.pem
+
+3. 自動同期スクリプトを作成する
+
+保存先:
+05_CommandCenter/scripts/obsidian_git_autosync.sh
+
+仕様:
+- Vaultルートで実行されること
+- まず git pull --rebase --autostash を実行
+- コンフリクトが起きたら停止し、ログに記録する
+- 変更がなければ何もしない
+- 変更があれば git add -A
+- git diff --cached をログに残す
+- コミットメッセージは以下にする
+
+auto-sync: update vault notes
+
+- pushする
+- 実行結果をログに残す
+
+ログ保存先:
+05_CommandCenter/logs/obsidian_git_autosync.log
+
+4. 10分ごとに実行する設定を作成する
+
+macOSの場合は launchd を使ってください。
+
+plist保存先:
+~/Library/LaunchAgents/com.obsidian.vault.autosync.plist
+
+設定:
+- 10分ごとに実行
+- 標準出力・標準エラーはログに追記
+- 実行対象は作成した obsidian_git_autosync.sh
+
+5. launchdに登録する
+
+以下を実行してください。
+
+launchctl unload ~/Library/LaunchAgents/com.obsidian.vault.autosync.plist 2&gt;/dev/null || true
+launchctl load ~/Library/LaunchAgents/com.obsidian.vault.autosync.plist
+launchctl start com.obsidian.vault.autosync
+
+6. 動作確認する
+
+以下を確認してください。
+
+launchctl list | grep obsidian.vault.autosync
+tail -n 50 05_CommandCenter/logs/obsidian_git_autosync.log
+
+7. 完了後に報告する
+
+以下を報告してください。
+
+- 作成したスクリプト
+- 作成したplist
+- launchd登録状況
+- 最初の実行ログ
+- GitHub pushが成功したか
+- コンフリクト時の挙動
+- 解除方法
+
+注意:
+- 認証情報をファイルに書かない
+- コンフリクトが起きたら自動解決しない
+- .env やキー類をstageしない
+- 初回実行前に git status -sb を見せる
+- 不明点があれば勝手に進めず確認する</pre></div>
             </div>
         </div>
     </section>
