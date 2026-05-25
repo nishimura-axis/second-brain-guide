@@ -1238,7 +1238,7 @@
     <section id="one-hour">
         <div class="section-header"><h2>⏱️ 1時間でやりきること</h2><p>ゴールは、環境構築だけでなく、AXADから実際にデータを読めるところまで確認することです。</p></div>
         <div class="features-grid"><div class="feature-card"><div class="feature-icon">🤖</div><h3>Codex</h3><p>Vaultを開ける。必要なプラグインが接続されている。AGENTS.mdが入り、作業ルールを毎回説明しなくてよい。</p></div><div class="feature-card"><div class="feature-icon">📚</div><h3>Obsidian</h3><p>テンプレートとLecture 01〜09が入っている。どこに何を書くか、最初の使い方を1回試している。</p></div><div class="feature-card"><div class="feature-icon">☁️</div><h3>GitHub</h3><p>Vaultのprivate backupができている。10分ごとのpull / commit / push自動同期が動いている。</p></div><div class="feature-card"><div class="feature-icon">📈</div><h3>AXAD</h3><p>MCPが読み取り専用で接続され、取得できる範囲の広告データを1回抽出している。</p></div></div>
-        <div class="comparison" style="margin-top: 2rem;"><table><thead><tr><th>順番</th><th>目安</th><th>やること</th><th>完了条件</th></tr></thead><tbody><tr><td>1</td><td>5分</td><td>GitHub登録</td><td class="highlight">GitHubにログインできる</td></tr><tr><td>2</td><td>7分</td><td>Obsidianインストール・Vault作成</td><td class="highlight">Documents/Obsidian/MyVault がある</td></tr><tr><td>3</td><td>8分</td><td>Codexプラグイン登録</td><td class="highlight">GitHub / Google系 / Computer Use / Chrome / Gmailが接続済み</td></tr><tr><td>4</td><td>4分</td><td>配布ファイルをダウンロード</td><td class="highlight">7つの配布ファイルが手元にある</td></tr><tr><td>5</td><td>6分</td><td>CodexでVaultを開く</td><td class="highlight">CodexがVaultを読める</td></tr><tr><td>6</td><td>8分</td><td>Obsidian土台を作る</td><td class="highlight">AGENTS.md / テンプレート / Lecture 01〜09が入る</td></tr><tr><td>7</td><td>8分</td><td>GitHub連携</td><td class="highlight">private repositoryにpush済み</td></tr><tr><td>8</td><td>7分</td><td>10分自動同期</td><td class="highlight">自動同期ログを確認できる</td></tr><tr><td>9</td><td>4分</td><td>AXAD連携</td><td class="highlight">読み取り専用で接続できる</td></tr><tr><td>10</td><td>3分</td><td>連携テスト</td><td class="highlight">AXADからデータを抽出できる</td></tr></tbody></table></div>
+        <div class="comparison" style="margin-top: 2rem;"><table><thead><tr><th>順番</th><th>目安</th><th>やること</th><th>完了条件</th></tr></thead><tbody><tr><td>1</td><td>5分</td><td>GitHub登録</td><td class="highlight">GitHubにログインできる</td></tr><tr><td>2</td><td>7分</td><td>Obsidianインストール・Vault作成</td><td class="highlight">Documents/Obsidian/MyVault がある</td></tr><tr><td>3</td><td>8分</td><td>Codexプラグイン登録</td><td class="highlight">GitHub / Google系 / Computer Use / Chrome / Gmailが接続済み</td></tr><tr><td>4</td><td>4分</td><td>配布ファイルをダウンロード</td><td class="highlight">7つの配布ファイルが手元にある</td></tr><tr><td>5</td><td>6分</td><td>CodexでVaultを開く</td><td class="highlight">CodexがVaultを読める</td></tr><tr><td>6</td><td>8分</td><td>Obsidian土台を作る</td><td class="highlight">AGENTS.md / 05_CommandCenter / テンプレート / Lecture 01〜09が入る</td></tr><tr><td>7</td><td>8分</td><td>GitHub連携</td><td class="highlight">private repositoryにpush済み</td></tr><tr><td>8</td><td>7分</td><td>10分自動同期</td><td class="highlight">自動同期ログを確認できる</td></tr><tr><td>9</td><td>4分</td><td>AXAD連携</td><td class="highlight">読み取り専用で接続できる</td></tr><tr><td>10</td><td>3分</td><td>連携テスト</td><td class="highlight">AXADからデータを抽出できる</td></tr></tbody></table></div>
     </section>
 
     <section id="setup">
@@ -1247,16 +1247,17 @@
             <div class="step"><div class="step-content"><h3>1. GitHub登録</h3><p>Obsidian Vaultのバックアップ先を作るためにGitHubへ登録します。リポジトリ作成は後でCodexに任せます。</p><span class="step-time">⏱️ 約5分</span><div class="note-box"><ol style="margin:0; padding-left:1.5rem;"><li><a href="https://github.com/signup" target="_blank" rel="noopener" style="color: var(--accent-primary);">https://github.com/signup</a> でアカウント作成、または <a href="https://github.com/login" target="_blank" rel="noopener" style="color: var(--accent-primary);">login</a></li><li>ログインできればOK</li><li>トークンやパスワードは、この資料・Obsidian・AGENTS.mdに書かない</li></ol></div></div></div>
             <div class="step"><div class="step-content"><h3>2. ObsidianをインストールしてVaultを作る</h3><p>情報を保管する場所を作ります。ここがCodexに読ませる第二の脳の本体です。</p><span class="step-time">⏱️ 約7分</span><div class="note-box"><ol style="margin:0; padding-left:1.5rem;"><li><a href="https://obsidian.md" target="_blank" rel="noopener" style="color: var(--accent-primary);">https://obsidian.md</a> からObsidianをインストールする</li><li>Obsidianを起動し、<strong>Create new vault</strong> を選ぶ</li><li>Vault名を <code>MyVault</code> にする</li><li>保存場所は <code>Documents/Obsidian/</code> 配下を推奨</li><li><code>Documents/Obsidian/MyVault</code> ができればOK</li></ol></div></div></div>
             <div class="step"><div class="step-content"><h3>3. Codexプラグインを登録する</h3><p>Codexが必要なサービスへ接続できるようにします。設定画面で以下を接続してください。</p><span class="step-time">⏱️ 約8分</span><div class="comparison"><table><thead><tr><th>プラグイン</th><th>今回使う目的</th></tr></thead><tbody><tr><td>GitHub</td><td class="highlight">Vault用private repository作成、push確認</td></tr><tr><td>Google Drive</td><td class="highlight">Docs / Slides / Driveファイル参照</td></tr><tr><td>Google Calendar</td><td class="highlight">予定・会議文脈の確認</td></tr><tr><td>Google Sheets / スプレッドシート</td><td class="highlight">表データ確認・整理</td></tr><tr><td>Computer Use</td><td class="highlight">ローカル画面操作の補助</td></tr><tr><td>Chrome</td><td class="highlight">ログイン済みブラウザ確認</td></tr><tr><td>Gmail</td><td class="highlight">メール文脈の確認</td></tr></tbody></table></div></div></div>
-            <div class="step"><div class="step-content"><h3>4. 配布ファイルをダウンロードする</h3><p>このあとCodexに貼るプロンプトと、Obsidianに入れるLectureファイルをダウンロードします。</p><span class="step-time">⏱️ 約4分</span><div class="difference-grid"><a class="btn btn-secondary" href="downloads/ads_context_bundle.zip" download>Lecture 01〜09</a><a class="btn btn-secondary" href="downloads/create_agents_prompt.md" download>AGENTS.md Prompt</a><a class="btn btn-secondary" href="downloads/setup_obsidian_codex_prompt.md" download>Obsidian Setup</a><a class="btn btn-secondary" href="downloads/connect_github_prompt.md" download>GitHub連携</a><a class="btn btn-secondary" href="downloads/autosync_prompt.md" download>10分自動同期</a><a class="btn btn-secondary" href="downloads/axad_connection_prompt.md" download>AXAD連携</a><a class="btn btn-secondary" href="downloads/axad_test_prompt.md" download>AXADテスト</a></div></div></div>
+            <div class="step"><div class="step-content"><h3>4. 配布ファイルをダウンロードする</h3><p>このあとCodexに貼るプロンプトと、Obsidianに入れるLectureファイルをダウンロードします。ボタンをクリックするとファイルが保存されます。ブラウザ設定によってMarkdownが開いた場合は、右クリックで保存してください。</p><span class="step-time">⏱️ 約4分</span><div class="difference-grid"><a class="btn btn-secondary" href="downloads/ads_context_bundle.zip" download>Lecture 01〜09</a><a class="btn btn-secondary" href="downloads/create_agents_prompt.md" download>AGENTS.md Prompt</a><a class="btn btn-secondary" href="downloads/setup_obsidian_codex_prompt.md" download>Obsidian Setup</a><a class="btn btn-secondary" href="downloads/connect_github_prompt.md" download>GitHub連携</a><a class="btn btn-secondary" href="downloads/autosync_prompt.md" download>10分自動同期</a><a class="btn btn-secondary" href="downloads/axad_connection_prompt.md" download>AXAD連携</a><a class="btn btn-secondary" href="downloads/axad_test_prompt.md" download>AXADテスト</a></div></div></div>
             <div class="step"><div class="step-content"><h3>5. CodexでVaultを開く</h3><p>CodexがObsidianの中身を読める状態にします。ここで詰まる場合はフルディスクアクセスを確認します。</p><span class="step-time">⏱️ 約6分</span><div class="note-box"><ol style="margin:0; padding-left:1.5rem;"><li>Codexを開く</li><li>作業フォルダとして <code>Documents/Obsidian/MyVault</code> を選ぶ</li><li>macOSの場合は「システム設定 → プライバシーとセキュリティ → フルディスクアクセス」でCodexを許可する</li><li>Codexに「このVaultのフォルダ一覧を確認して」と依頼し、読めればOK</li></ol></div></div></div>
             <div class="step"><div class="step-content"><h3>6. Obsidianの土台を作る</h3><p>Obsidian SetupのプロンプトをCodexに貼ります。AGENTS.md、テンプレート、Lecture 01〜09の配置まで進めます。</p><span class="step-time">⏱️ 約8分</span><div class="code-block"><pre>downloads/setup_obsidian_codex_prompt.md の内容を使って、Obsidian Vault の初期セットアップをしてください。
 
 完了条件:
 1. AGENTS.md がVaultルートにある
-2. 60_Templates にテンプレートがある
-3. 20_Context/AXIS/Ads に Lecture_01〜Lecture_09 がある
-4. 秘密情報、個人情報、キーが書かれていない
-5. 次回からCodexがどこを参照すればよいか報告している</pre></div></div></div>
+2. 05_CommandCenter/scripts と 05_CommandCenter/logs がある
+3. 60_Templates にテンプレートがある
+4. 20_Context/AXIS/Ads に Lecture_01〜Lecture_09 がある
+5. 秘密情報、個人情報、キーが書かれていない
+6. 次回からCodexがどこを参照すればよいか報告している</pre></div></div></div>
             <div class="step"><div class="step-content"><h3>7. GitHub連携</h3><p>GitHub連携プロンプトをCodexに貼ります。Obsidian Vaultをprivate repositoryへpushします。</p><span class="step-time">⏱️ 約8分</span><div class="code-block"><pre>downloads/connect_github_prompt.md の内容を使って、Obsidian Vault と GitHub を連携してください。
 
 完了条件:
@@ -1270,10 +1271,11 @@
 
 完了条件:
 1. 自動同期スクリプトがある
-2. launchd に登録されている
-3. 最初の実行ログを確認できる
-4. GitHub push が成功している
-5. コンフリクト時は自動解決せず停止する設定になっている</pre></div></div></div>
+2. 05_CommandCenter/logs にログが出ている
+3. launchd に登録されている
+4. 最初の実行ログを確認できる
+5. GitHub push が成功している
+6. コンフリクト時は自動解決せず停止する設定になっている</pre></div></div></div>
             <div class="step"><div class="step-content"><h3>9. AXAD連携</h3><p>AXAD MCPを読み取り専用で接続します。キーは個人チャットで西村から送付されている前提です。</p><span class="step-time">⏱️ 約4分</span><div class="code-block"><pre>downloads/axad_connection_prompt.md の内容を使って、AXAD MCPサーバーをCodexに接続してください。
 
 完了条件:
@@ -1288,7 +1290,8 @@
 2. 数字の事実が出ている
 3. 気になる変化が出ている
 4. 次に確認すべきことが出ている
-5. キーや接続情報が表示されていない</pre></div></div></div>
+5. 人間が判断することが出ている
+6. キーや接続情報が表示されていない</pre></div></div></div>
         </div>
     </section>
 
@@ -1306,7 +1309,7 @@
             <div class="feature-card">
                 <div class="feature-icon">🔌</div>
                 <h3>Codex GitHubプラグイン</h3>
-                <p>GitHub API操作はプラグイン接続で進める。Classic tokenを資料に貼る運用はしない。接続できていない時は、Codex側のプラグイン接続状態を先に確認する。</p>
+                <p>GitHub連携はプラグイン接続で進める。Classic tokenを資料に貼る運用はしない。接続できていない時は、Codex側のプラグイン接続状態を先に確認する。</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">🗂️</div>

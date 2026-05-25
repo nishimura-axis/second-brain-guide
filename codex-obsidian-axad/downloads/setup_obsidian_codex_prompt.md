@@ -13,6 +13,9 @@
 
 1. 標準フォルダを作成する
    - 00_Inbox
+   - 05_CommandCenter
+   - 05_CommandCenter/scripts
+   - 05_CommandCenter/logs
    - 07_DailyLog
    - 08_MeetingLog
    - 10_Goals
@@ -23,6 +26,10 @@
    - 60_Templates
    - 70_Meetings
    - 80_Outputs
+
+   補足:
+   - 05_CommandCenter は、Codexに依頼する運用スクリプトやログの置き場です
+   - 10分自動同期で使う scripts / logs も最初に作っておきます
 
 2. テンプレートを作成する
    - Project
