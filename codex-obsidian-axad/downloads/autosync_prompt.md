@@ -31,11 +31,16 @@ sa-key.json
 
 3. 自動同期スクリプトを作成する
 
+まず保存先フォルダを作成してください。
+
+mkdir -p 05_CommandCenter/scripts 05_CommandCenter/logs
+
 保存先:
 05_CommandCenter/scripts/obsidian_git_autosync.sh
 
 仕様:
 - Vaultルートで実行されること
+- スクリプトの先頭でVaultルートへ移動すること
 - まず git pull --rebase --autostash を実行
 - コンフリクトが起きたら停止し、ログに記録する
 - 変更がなければ何もしない
@@ -47,6 +52,7 @@ auto-sync: update vault notes
 
 - pushする
 - 実行結果をログに残す
+- スクリプト作成後に chmod +x で実行権限を付ける
 
 ログ保存先:
 05_CommandCenter/logs/obsidian_git_autosync.log
@@ -89,6 +95,7 @@ tail -n 50 05_CommandCenter/logs/obsidian_git_autosync.log
 - GitHub pushが成功したか
 - コンフリクト時の挙動
 - 解除方法
+- 05_CommandCenter/scripts と 05_CommandCenter/logs を作成済みか
 
 注意:
 - 認証情報をファイルに書かない
