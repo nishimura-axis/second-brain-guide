@@ -4,7 +4,7 @@
 
 ## 前提
 
-このフォルダにある配布ファイルを使います。
+ダウンロードした codex_obsidian_setup_bundle.zip を展開したフォルダにある配布ファイルを使います。
 
 - ads_context_bundle.zip
 - create_agents_prompt.md
