@@ -1141,11 +1141,13 @@
         .flow-node strong { display: block; color: var(--text-primary); margin-bottom: 0.25rem; }
         .flow-node span { display: block; color: var(--text-secondary); font-size: 0.86rem; line-height: 1.5; }
         .flow-arrow { display: flex; align-items: center; color: var(--accent-primary); font-size: 1.8rem; }
-        .context-map { display: grid; grid-template-columns: 1fr auto 1fr; grid-template-areas: "human human human" "obsidian bridge codex" "caption caption caption"; gap: 1.5rem; align-items: center; }
-        .context-panel { background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: 18px; padding: 1.5rem; min-height: 250px; }
-        .context-panel.human-panel { grid-area: human; min-height: auto; max-width: 760px; margin: 0 auto; width: 100%; }
-        .context-panel.obsidian-panel { grid-area: obsidian; }
-        .context-panel.codex-panel { grid-area: codex; }
+        .context-map { display: grid; grid-template-columns: minmax(210px, 1fr) minmax(220px, 0.9fr) minmax(210px, 1fr); grid-template-areas: "human human human" "task codex return" "obsidian-read obsidian-write obsidian-write" "caption caption caption"; gap: 1rem; align-items: stretch; }
+        .context-panel { background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: 18px; padding: 1.35rem; }
+        .context-panel.human-panel { grid-area: human; max-width: 780px; margin: 0 auto; width: 100%; }
+        .context-panel.obsidian-read { grid-area: obsidian-read; }
+        .context-panel.obsidian-write { grid-area: obsidian-write; }
+        .context-panel.task-panel { grid-area: task; }
+        .context-panel.return-panel { grid-area: return; }
         .context-panel h3 { color: var(--text-primary); font-size: 1.25rem; margin-bottom: 1rem; text-align: center; }
         .context-list { display: grid; gap: 0.75rem; }
         .context-pill { background: rgba(99, 102, 241, 0.08); border: 1px solid rgba(99, 102, 241, 0.22); border-radius: 12px; padding: 0.85rem 1rem; }
@@ -1154,11 +1156,14 @@
         .codex-core { width: 190px; min-height: 190px; border-radius: 50%; background: var(--accent-gradient); box-shadow: var(--glow); display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 1.5rem; color: white; }
         .codex-core strong { font-size: 1.5rem; margin-bottom: 0.35rem; }
         .codex-core span { font-size: 0.86rem; line-height: 1.5; opacity: 0.92; }
-        .context-bridge { grid-area: bridge; display: grid; justify-items: center; gap: 0.85rem; min-width: 210px; }
-        .context-arrow { color: var(--accent-primary); font-size: 1.8rem; text-align: center; line-height: 1; }
+        .context-bridge { grid-area: codex; display: grid; justify-items: center; align-content: center; gap: 0.75rem; min-width: 220px; }
+        .context-arrow { color: var(--accent-primary); font-size: 1.35rem; font-weight: 800; text-align: center; line-height: 1.25; }
         .context-arrow-label { color: var(--text-secondary); font-size: 0.8rem; line-height: 1.5; text-align: center; }
         .human-loop { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; }
         .human-loop .context-pill { text-align: center; }
+        .workflow-step { display: grid; gap: 0.75rem; align-content: center; min-height: 190px; }
+        .workflow-step h3 { margin-bottom: 0; }
+        .workflow-step .context-arrow { margin: 0.15rem 0; }
         .flow-caption { grid-column: 1 / -1; color: var(--text-secondary); text-align: center; margin-top: 0.25rem; font-size: 0.95rem; }
         .note-box { background: rgba(99,102,241,0.08); border: 1px solid rgba(99,102,241,0.28); border-radius: 16px; padding: 1.25rem 1.5rem; color: var(--text-secondary); margin: 1.5rem 0; }
         .note-box strong { color: var(--text-primary); }
@@ -1169,10 +1174,10 @@
         .section-divider { height: 1px; background: var(--border-color); margin: 3rem 0; opacity: 0.7; }
         .compact-table td, .compact-table th { vertical-align: top; }
         @media (max-width: 900px) {
-            .context-map { grid-template-columns: 1fr; grid-template-areas: "human" "obsidian" "bridge" "codex" "caption"; }
+            .context-map { grid-template-columns: 1fr; grid-template-areas: "human" "task" "codex" "obsidian-read" "obsidian-write" "return" "caption"; }
             .human-loop { grid-template-columns: 1fr; }
-            .context-arrow { transform: rotate(90deg); }
             .codex-core { margin: 0 auto; }
+            .workflow-step { min-height: auto; }
         }
         @media (max-width: 768px) { .flow-arrow { transform: rotate(90deg); width: 100%; justify-content: center; } }
     </style>
@@ -1210,7 +1215,7 @@
     </header>
 
     <section id="prereq">
-        <div class="section-header"><h2>🧭 まず知っておくこと</h2><p>受講者はCodexデスクトップアプリだけ入っている前提です。ここでは、今回使う道具の役割だけ先に押さえます。</p></div>
+        <div class="section-header"><h2>🧭 まず知っておくこと</h2><p>人間側はCodexデスクトップアプリだけ入っている前提です。ここでは、今回使う道具の役割だけ先に押さえます。</p></div>
         <div class="tools-grid">
             <div class="tool-card"><div class="tool-icon">🤖</div><h3>Codex</h3><div class="role">作業を進めるAIエージェント</div><p>この資料では、CodexにObsidian Vaultを開かせ、フォルダ作成、テンプレート配置、GitHub連携、同期設定、AXAD確認を進めてもらいます。</p></div>
             <div class="tool-card"><div class="tool-icon">📚</div><h3>Obsidian</h3><div class="role">情報を貯めるノートアプリ</div><p>Lecture 01〜09、PJメモ、議事録、判断ログをMarkdownで保存します。Codexが読む前提知識の置き場です。</p></div>
@@ -1220,10 +1225,13 @@
             <div class="tool-card"><div class="tool-icon">📈</div><h3>AXAD MCP</h3><div class="role">広告データの読み取り口</div><p>キーは個人チャットで西村から共有済みの前提です。この資料では読み取り専用で接続し、実際にデータを抽出してテストします。</p></div>
         </div>
         <div class="flow-diagram context-map" style="margin-top: 2rem;">
-            <div class="context-panel human-panel"><h3>受講者</h3><div class="human-loop"><div class="context-pill"><strong>指示する</strong><span>やりたいことを日本語で伝える</span></div><div class="context-pill"><strong>判断する</strong><span>選択肢・懸念・次の一手を見る</span></div><div class="context-pill"><strong>残す</strong><span>決定や学びをObsidianに戻す</span></div></div></div>
-            <div class="context-panel obsidian-panel"><h3>Obsidian</h3><div class="context-list"><div class="context-pill"><strong>20_Context</strong><span>Lecture 01〜09などの前提</span></div><div class="context-pill"><strong>30_Projects</strong><span>PJの現状と次アクション</span></div><div class="context-pill"><strong>60_Templates</strong><span>ノート作成の型</span></div></div></div>
-            <div class="context-bridge"><div class="context-arrow">受講者 → Codex</div><div class="context-arrow-label">日本語で依頼</div><div class="context-arrow">Codex ⇄ Obsidian</div><div class="context-arrow-label">必要なノートを読む</div><div class="codex-core"><strong>Codex</strong><span>AGENTS.mdのルールで<br>文脈を読んで<br>作業する</span></div><div class="context-arrow">Codex → 受講者</div><div class="context-arrow-label">要約・判断材料・作業結果</div></div>
-            <p class="flow-caption">Codex単体がすごいのではなく、Obsidianに前提を置き、AGENTS.mdで作業ルールを渡すから、毎回の説明が減って作業が速くなります。</p>
+            <div class="context-panel human-panel"><h3>人間</h3><div class="human-loop"><div class="context-pill"><strong>指示する</strong><span>やりたいこと、目的、制約を日本語で渡す</span></div><div class="context-pill"><strong>判断する</strong><span>Codexが出した選択肢・懸念・次の一手を見る</span></div><div class="context-pill"><strong>確認する</strong><span>結果を見て、OK / 修正 / 保留を決める</span></div></div></div>
+            <div class="context-panel workflow-step task-panel"><h3>人間 → Codex</h3><div class="context-arrow">指示・目的・制約</div><div class="context-pill"><strong>例</strong><span>「AXADの昨日の成果を見て、異常がないか確認して」</span></div></div>
+            <div class="context-bridge"><div class="codex-core"><strong>Codex</strong><span>AGENTS.mdのルールで<br>タスクを遂行し<br>必要な文脈を読む</span></div></div>
+            <div class="context-panel workflow-step return-panel"><h3>Codex → 人間</h3><div class="context-arrow">結果・判断材料・次アクション</div><div class="context-pill"><strong>返すもの</strong><span>要約、確認観点、リスク、次に人間が決めること</span></div></div>
+            <div class="context-panel obsidian-read"><h3>Obsidian → Codex</h3><div class="context-list"><div class="context-pill"><strong>20_Context</strong><span>Lecture 01〜09などの前提を読む</span></div><div class="context-pill"><strong>30_Projects</strong><span>PJの現状、決定事項、次アクションを読む</span></div><div class="context-pill"><strong>60_Templates</strong><span>ノート作成の型を使う</span></div></div></div>
+            <div class="context-panel obsidian-write"><h3>Codex → Obsidian</h3><div class="context-list"><div class="context-pill"><strong>記録する</strong><span>作業結果、決定事項、未解決のTODOを残す</span></div><div class="context-pill"><strong>更新する</strong><span>PJメモ、議事録、共有用アウトプットを整理する</span></div><div class="context-pill"><strong>次回に効く</strong><span>前回の説明を繰り返さず、文脈を引き継げる</span></div></div></div>
+            <p class="flow-caption">人間が目的を決め、Codexがタスクを遂行し、Obsidianに文脈と結果を残します。次回以降はCodexがその記録を読めるので、説明のやり直しが減ります。</p>
         </div>
     </section>
 
@@ -1503,7 +1511,7 @@ AIに慣れていない人
         <div class="faq-list">
             <div class="faq-item">
                 <div class="faq-question">AGENTS.mdはなぜ最初から入れる？</div>
-                <div class="faq-answer"><p>Codexの出力品質は、最初に読ませる前提で大きく変わります。配布版のAGENTS.mdを入れることで、受講者が最初から同じ作業ルールでCodexを使えるようにします。</p></div>
+                <div class="faq-answer"><p>Codexの出力品質は、最初に読ませる前提で大きく変わります。配布版のAGENTS.mdを入れることで、人間が最初から同じ作業ルールでCodexを使えるようにします。</p></div>
             </div>
             <div class="faq-item">
                 <div class="faq-question">AXAD MCPのキーはこの資料に載せる？</div>
