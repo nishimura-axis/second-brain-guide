@@ -6,7 +6,7 @@ Obsidian Vault と GitHub を連携してください。
 - トークンや認証情報をAGENTS.md、Vault内ノート、共有資料に書かないでください
 - Obsidian VaultをGitHubでバックアップ・同期できるようにする作業です
 - リポジトリは private で作成・運用してください
-- 過去のClaudeCode版セットアップ資料の考え方を踏襲しつつ、Codexで実行してください
+- この資料の手順に沿って、Codexで実行してください
 
 まず以下を確認してください。
 
