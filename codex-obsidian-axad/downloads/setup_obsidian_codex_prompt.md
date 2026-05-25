@@ -13,7 +13,6 @@
 
 1. 標準フォルダを作成する
    - 00_Inbox
-   - 05_CommandCenter
    - 07_DailyLog
    - 08_MeetingLog
    - 10_Goals
