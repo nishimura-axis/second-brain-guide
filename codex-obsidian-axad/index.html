@@ -118,7 +118,7 @@
 
         /* Hero Section */
         .hero {
-            min-height: 100vh;
+            min-height: 86vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -1185,15 +1185,11 @@
         <div class="logo">🧠 Codex Brain</div>
         <button class="mobile-menu-btn" aria-label="メニューを開く">☰</button>
         <ul class="nav-links">
-            <li><a href="#problem">課題</a></li>
-            <li><a href="#solution">全体像</a></li>
-            <li><a href="#features">できること</a></li>
-            <li><a href="#usage">活用例</a></li>
-            <li><a href="#tools">構成</a></li>
+            <li><a href="#prereq">前提知識</a></li>
             <li><a href="#one-hour">1時間の流れ</a></li>
             <li><a href="#setup">セットアップ</a></li>
             <li><a href="#troubleshooting">詰まり</a></li>
-            <li><a href="#agents">AGENTS.md</a></li>
+            <li><a href="#usage">使用例</a></li>
             <li><a href="#faq">FAQ</a></li>
         </ul>
     </nav>
@@ -1205,169 +1201,130 @@
             <span>第二の脳</span>を作る
         </h1>
         <p class="hero-subtitle fade-in delay-2">
-            このページを上から順番に進めるだけで、Obsidian・Codex・GitHubの初期環境を1時間以内に作るための社内向け手順書です。
+            Codexだけインストール済みの状態から、Obsidian・GitHub・AXAD連携までを1時間で作るための社内向け手順書です。
         </p>
         <div class="hero-cta fade-in delay-3">
             <a href="#setup" class="btn btn-primary">セットアップを始める →</a>
-            <a href="#solution" class="btn btn-secondary">全体像を見る</a>
+            <a href="#prereq" class="btn btn-secondary">前提知識を見る</a>
         </div>
     </header>
 
-    <section id="problem">
-        <div class="problems">
-            <div class="section-header">
-                <h2>😰 こんな状態をなくす</h2>
-                <p>Obsidianに文脈を貯め、Codexがそれを読んで作業できる状態を標準にします。</p>
-            </div>
-            <div class="problem-grid">
-                <div class="problem-card">
-                    <div class="problem-icon">📝</div>
-                    <h3>「あの情報どこだっけ…」</h3>
-                    <p>Slack、ChatWork、メール、議事録、仕様書、広告運用メモが散らばり、探すだけで時間を使ってしまう。</p>
-                </div>
-                <div class="problem-card">
-                    <div class="problem-icon">🤔</div>
-                    <h3>判断の理由が消える</h3>
-                    <p>前に決めたことは残っていても、なぜそうしたのか、次に何を見るべきかが残りにくい。</p>
-                </div>
-                <div class="problem-card">
-                    <div class="problem-icon">📊</div>
-                    <h3>AXADの数字確認が手作業</h3>
-                    <p>広告データを見たいだけなのに、毎回管理画面を開いて絞り込み、CSVやスクショに頼ってしまう。</p>
-                </div>
-                <div class="problem-card">
-                    <div class="problem-icon">💭</div>
-                    <h3>AIに毎回背景説明</h3>
-                    <p>単発チャットでは、組織・PJ・運用ルール・過去の判断を毎回説明する必要がある。</p>
-                </div>
-            </div>
+    <section id="prereq">
+        <div class="section-header"><h2>🧭 まず知っておくこと</h2><p>受講者はCodexデスクトップアプリだけ入っている前提です。ここでは、今回使う道具の役割だけ先に押さえます。</p></div>
+        <div class="tools-grid">
+            <div class="tool-card"><div class="tool-icon">🤖</div><h3>Codex</h3><div class="role">作業を進めるAIエージェント</div><p>この資料では、CodexにObsidian Vaultを開かせ、フォルダ作成、テンプレート配置、GitHub連携、同期設定、AXAD確認を進めてもらいます。</p></div>
+            <div class="tool-card"><div class="tool-icon">📚</div><h3>Obsidian</h3><div class="role">情報を貯めるノートアプリ</div><p>Lecture 01〜09、PJメモ、議事録、判断ログをMarkdownで保存します。Codexが読む前提知識の置き場です。</p></div>
+            <div class="tool-card"><div class="tool-icon">☁️</div><h3>GitHub</h3><div class="role">バックアップと同期</div><p>Obsidian Vaultをprivate repositoryに保存します。10分ごとのpull / commit / pushでバックアップ代わりに使います。</p></div>
+            <div class="tool-card"><div class="tool-icon">🧭</div><h3>AGENTS.md</h3><div class="role">Codex用の作業ルール</div><p>Codexが毎回同じ品質で動くための説明書です。確認が必要な作業、自律実行してよい作業、Vaultの使い方を最初から入れます。</p></div>
+            <div class="tool-card"><div class="tool-icon">🔌</div><h3>Codexプラグイン</h3><div class="role">外部サービスとの接続</div><p>GitHub、Google Drive、Google Calendar、Google Sheets、Computer Use、Chrome、Gmailを接続します。必要な情報をCodexが参照・操作できるようにします。</p></div>
+            <div class="tool-card"><div class="tool-icon">📈</div><h3>AXAD MCP</h3><div class="role">広告データの読み取り口</div><p>キーは個人チャットで西村から共有済みの前提です。この資料では読み取り専用で接続し、実際にデータを抽出してテストします。</p></div>
+        </div>
+        <div class="flow-diagram context-map" style="margin-top: 2rem;">
+            <div class="context-panel human-panel"><h3>受講者</h3><div class="human-loop"><div class="context-pill"><strong>指示する</strong><span>やりたいことを日本語で伝える</span></div><div class="context-pill"><strong>判断する</strong><span>選択肢・懸念・次の一手を見る</span></div><div class="context-pill"><strong>残す</strong><span>決定や学びをObsidianに戻す</span></div></div></div>
+            <div class="context-panel obsidian-panel"><h3>Obsidian</h3><div class="context-list"><div class="context-pill"><strong>20_Context</strong><span>Lecture 01〜09などの前提</span></div><div class="context-pill"><strong>30_Projects</strong><span>PJの現状と次アクション</span></div><div class="context-pill"><strong>60_Templates</strong><span>ノート作成の型</span></div></div></div>
+            <div class="context-bridge"><div class="context-arrow">受講者 → Codex</div><div class="context-arrow-label">日本語で依頼</div><div class="context-arrow">Codex ⇄ Obsidian</div><div class="context-arrow-label">必要なノートを読む</div><div class="codex-core"><strong>Codex</strong><span>AGENTS.mdのルールで<br>文脈を読んで<br>作業する</span></div><div class="context-arrow">Codex → 受講者</div><div class="context-arrow-label">要約・判断材料・作業結果</div></div>
+            <p class="flow-caption">Codex単体がすごいのではなく、Obsidianに前提を置き、AGENTS.mdで作業ルールを渡すから、毎回の説明が減って作業が速くなります。</p>
         </div>
     </section>
 
-    <section id="solution">
-        <div class="section-header">
-            <h2>💡 全体像：文脈を貯めて、Codexで動かす</h2>
-            <p>このセットアップの目的は、受講者が「毎回説明しなくても、CodexがObsidianの前提を読んで動ける状態」を作ることです。</p>
-        </div>
+    <section id="one-hour">
+        <div class="section-header"><h2>⏱️ 1時間でやりきること</h2><p>ゴールは、環境構築だけでなく、AXADから実際にデータを読めるところまで確認することです。</p></div>
+        <div class="features-grid"><div class="feature-card"><div class="feature-icon">🤖</div><h3>Codex</h3><p>Vaultを開ける。必要なプラグインが接続されている。AGENTS.mdが入り、作業ルールを毎回説明しなくてよい。</p></div><div class="feature-card"><div class="feature-icon">📚</div><h3>Obsidian</h3><p>テンプレートとLecture 01〜09が入っている。どこに何を書くか、最初の使い方を1回試している。</p></div><div class="feature-card"><div class="feature-icon">☁️</div><h3>GitHub</h3><p>Vaultのprivate backupができている。10分ごとのpull / commit / push自動同期が動いている。</p></div><div class="feature-card"><div class="feature-icon">📈</div><h3>AXAD</h3><p>MCPが読み取り専用で接続され、取得できる範囲の広告データを1回抽出している。</p></div></div>
+        <div class="comparison" style="margin-top: 2rem;"><table><thead><tr><th>順番</th><th>目安</th><th>やること</th><th>完了条件</th></tr></thead><tbody><tr><td>1</td><td>5分</td><td>GitHub登録</td><td class="highlight">GitHubにログインできる</td></tr><tr><td>2</td><td>7分</td><td>Obsidianインストール・Vault作成</td><td class="highlight">Documents/Obsidian/MyVault がある</td></tr><tr><td>3</td><td>8分</td><td>Codexプラグイン登録</td><td class="highlight">GitHub / Google系 / Computer Use / Chrome / Gmailが接続済み</td></tr><tr><td>4</td><td>4分</td><td>配布ファイルをダウンロード</td><td class="highlight">7つの配布ファイルが手元にある</td></tr><tr><td>5</td><td>6分</td><td>CodexでVaultを開く</td><td class="highlight">CodexがVaultを読める</td></tr><tr><td>6</td><td>8分</td><td>Obsidian土台を作る</td><td class="highlight">AGENTS.md / テンプレート / Lecture 01〜09が入る</td></tr><tr><td>7</td><td>8分</td><td>GitHub連携</td><td class="highlight">private repositoryにpush済み</td></tr><tr><td>8</td><td>7分</td><td>10分自動同期</td><td class="highlight">自動同期ログを確認できる</td></tr><tr><td>9</td><td>4分</td><td>AXAD連携</td><td class="highlight">読み取り専用で接続できる</td></tr><tr><td>10</td><td>3分</td><td>連携テスト</td><td class="highlight">AXADからデータを抽出できる</td></tr></tbody></table></div>
+    </section>
 
-        <div class="flow-diagram context-map">
-            <div class="context-panel human-panel">
-                <h3>人間が考えたいことを投げる</h3>
-                <div class="human-loop">
-                    <div class="context-pill"><strong>指示する</strong><span>「このPJを整理して」</span></div>
-                    <div class="context-pill"><strong>判断する</strong><span>選択肢・懸念・次の一手を見る</span></div>
-                    <div class="context-pill"><strong>蓄積する</strong><span>決定や学びをObsidianに戻す</span></div>
-                </div>
-            </div>
+    <section id="setup">
+        <div class="section-header"><h2>⚙️ 環境構築〜連携テスト</h2><p>この順番に進めれば、自分がどこまで進んだか迷わず確認できます。</p></div>
+        <div class="steps">
+            <div class="step"><div class="step-content"><h3>1. GitHub登録</h3><p>Obsidian Vaultのバックアップ先を作るためにGitHubへ登録します。リポジトリ作成は後でCodexに任せます。</p><span class="step-time">⏱️ 約5分</span><div class="note-box"><ol style="margin:0; padding-left:1.5rem;"><li><a href="https://github.com/signup" target="_blank" rel="noopener" style="color: var(--accent-primary);">https://github.com/signup</a> でアカウント作成、または <a href="https://github.com/login" target="_blank" rel="noopener" style="color: var(--accent-primary);">login</a></li><li>ログインできればOK</li><li>トークンやパスワードは、この資料・Obsidian・AGENTS.mdに書かない</li></ol></div></div></div>
+            <div class="step"><div class="step-content"><h3>2. ObsidianをインストールしてVaultを作る</h3><p>情報を保管する場所を作ります。ここがCodexに読ませる第二の脳の本体です。</p><span class="step-time">⏱️ 約7分</span><div class="note-box"><ol style="margin:0; padding-left:1.5rem;"><li><a href="https://obsidian.md" target="_blank" rel="noopener" style="color: var(--accent-primary);">https://obsidian.md</a> からObsidianをインストールする</li><li>Obsidianを起動し、<strong>Create new vault</strong> を選ぶ</li><li>Vault名を <code>MyVault</code> にする</li><li>保存場所は <code>Documents/Obsidian/</code> 配下を推奨</li><li><code>Documents/Obsidian/MyVault</code> ができればOK</li></ol></div></div></div>
+            <div class="step"><div class="step-content"><h3>3. Codexプラグインを登録する</h3><p>Codexが必要なサービスへ接続できるようにします。設定画面で以下を接続してください。</p><span class="step-time">⏱️ 約8分</span><div class="comparison"><table><thead><tr><th>プラグイン</th><th>今回使う目的</th></tr></thead><tbody><tr><td>GitHub</td><td class="highlight">Vault用private repository作成、push確認</td></tr><tr><td>Google Drive</td><td class="highlight">Docs / Slides / Driveファイル参照</td></tr><tr><td>Google Calendar</td><td class="highlight">予定・会議文脈の確認</td></tr><tr><td>Google Sheets / スプレッドシート</td><td class="highlight">表データ確認・整理</td></tr><tr><td>Computer Use</td><td class="highlight">ローカル画面操作の補助</td></tr><tr><td>Chrome</td><td class="highlight">ログイン済みブラウザ確認</td></tr><tr><td>Gmail</td><td class="highlight">メール文脈の確認</td></tr></tbody></table></div></div></div>
+            <div class="step"><div class="step-content"><h3>4. 配布ファイルをダウンロードする</h3><p>このあとCodexに貼るプロンプトと、Obsidianに入れるLectureファイルをダウンロードします。</p><span class="step-time">⏱️ 約4分</span><div class="difference-grid"><a class="btn btn-secondary" href="downloads/ads_context_bundle.zip" download>Lecture 01〜09</a><a class="btn btn-secondary" href="downloads/create_agents_prompt.md" download>AGENTS.md Prompt</a><a class="btn btn-secondary" href="downloads/setup_obsidian_codex_prompt.md" download>Obsidian Setup</a><a class="btn btn-secondary" href="downloads/connect_github_prompt.md" download>GitHub連携</a><a class="btn btn-secondary" href="downloads/autosync_prompt.md" download>10分自動同期</a><a class="btn btn-secondary" href="downloads/axad_connection_prompt.md" download>AXAD連携</a><a class="btn btn-secondary" href="downloads/axad_test_prompt.md" download>AXADテスト</a></div></div></div>
+            <div class="step"><div class="step-content"><h3>5. CodexでVaultを開く</h3><p>CodexがObsidianの中身を読める状態にします。ここで詰まる場合はフルディスクアクセスを確認します。</p><span class="step-time">⏱️ 約6分</span><div class="note-box"><ol style="margin:0; padding-left:1.5rem;"><li>Codexを開く</li><li>作業フォルダとして <code>Documents/Obsidian/MyVault</code> を選ぶ</li><li>macOSの場合は「システム設定 → プライバシーとセキュリティ → フルディスクアクセス」でCodexを許可する</li><li>Codexに「このVaultのフォルダ一覧を確認して」と依頼し、読めればOK</li></ol></div></div></div>
+            <div class="step"><div class="step-content"><h3>6. Obsidianの土台を作る</h3><p>Obsidian SetupのプロンプトをCodexに貼ります。AGENTS.md、テンプレート、Lecture 01〜09の配置まで進めます。</p><span class="step-time">⏱️ 約8分</span><div class="code-block"><pre>downloads/setup_obsidian_codex_prompt.md の内容を使って、Obsidian Vault の初期セットアップをしてください。
 
-            <div class="context-panel obsidian-panel">
-                <h3>Obsidianに貯まる文脈</h3>
-                <div class="context-list">
-                    <div class="context-pill"><strong>20_Context</strong><span>事業部・業務・顧客理解の前提</span></div>
-                    <div class="context-pill"><strong>30_Projects</strong><span>PJの現状、次アクション、未決事項</span></div>
-                    <div class="context-pill"><strong>40_Knowledge</strong><span>再利用できる判断軸とノウハウ</span></div>
-                    <div class="context-pill"><strong>70_Meetings</strong><span>議事録、決定事項、宿題</span></div>
-                </div>
-            </div>
+完了条件:
+1. AGENTS.md がVaultルートにある
+2. 60_Templates にテンプレートがある
+3. 20_Context/AXIS/Ads に Lecture_01〜Lecture_09 がある
+4. 秘密情報、個人情報、キーが書かれていない
+5. 次回からCodexがどこを参照すればよいか報告している</pre></div></div></div>
+            <div class="step"><div class="step-content"><h3>7. GitHub連携</h3><p>GitHub連携プロンプトをCodexに貼ります。Obsidian Vaultをprivate repositoryへpushします。</p><span class="step-time">⏱️ 約8分</span><div class="code-block"><pre>downloads/connect_github_prompt.md の内容を使って、Obsidian Vault と GitHub を連携してください。
 
-            <div class="context-bridge">
-                <div class="context-arrow">人間 → Codex</div>
-                <div class="context-arrow-label">日本語で依頼する</div>
-                <div class="context-arrow">Codex ⇄ Obsidian</div>
-                <div class="context-arrow-label">必要なノートを読み、必要なら更新する</div>
-                <div class="codex-core">
-                    <strong>Codex</strong>
-                    <span>指示を受けて<br>文脈を参照し<br>判断材料を返す</span>
-                </div>
-                <div class="context-arrow">Codex → 人間</div>
-                <div class="context-arrow-label">要約・選択肢・成果物を戻す</div>
-            </div>
+完了条件:
+1. Git管理されている
+2. private repository が作成されている
+3. remote が設定されている
+4. main ブランチにpush済み
+5. .gitignoreで機密情報が除外されている
+6. GitHub repository URLを報告している</pre></div></div></div>
+            <div class="step"><div class="step-content"><h3>8. 10分ごとの自動同期</h3><p>10分自動同期プロンプトをCodexに貼ります。GitHubをObsidianのバックアップとして継続利用できるようにします。</p><span class="step-time">⏱️ 約7分</span><div class="code-block"><pre>downloads/autosync_prompt.md の内容を使って、Obsidian Vault のGitHub同期を10分ごとに自動実行する設定を作ってください。
 
-            <div class="context-panel codex-panel">
-                <h3>Codexが人間に返すもの</h3>
-                <div class="context-list">
-                    <div class="context-pill"><strong>壁打ち</strong><span>背景込みで論点と選択肢を出す</span></div>
-                    <div class="context-pill"><strong>要件整理</strong><span>過去の判断を踏まえて構造化する</span></div>
-                    <div class="context-pill"><strong>次アクション</strong><span>何を決め、何を進めるかを明確にする</span></div>
-                    <div class="context-pill"><strong>成果物</strong><span>HTML、共有文、仕様書の下書きを作る</span></div>
-                </div>
-            </div>
-            <p class="flow-caption">人間が方向を決め、CodexがObsidianの文脈を参照して判断材料を返す。決定や学びをまたObsidianに戻すことで、次回以降の精度が上がります。</p>
+完了条件:
+1. 自動同期スクリプトがある
+2. launchd に登録されている
+3. 最初の実行ログを確認できる
+4. GitHub push が成功している
+5. コンフリクト時は自動解決せず停止する設定になっている</pre></div></div></div>
+            <div class="step"><div class="step-content"><h3>9. AXAD連携</h3><p>AXAD MCPを読み取り専用で接続します。キーは個人チャットで西村から送付されている前提です。</p><span class="step-time">⏱️ 約4分</span><div class="code-block"><pre>downloads/axad_connection_prompt.md の内容を使って、AXAD MCPサーバーをCodexに接続してください。
+
+完了条件:
+1. AXAD MCPが接続済み
+2. 読み取り専用である
+3. キーや認証情報をファイルに保存していない
+4. 取得できるデータ範囲を報告している</pre></div></div></div>
+            <div class="step"><div class="step-content"><h3>10. AXAD連携テスト</h3><p>最後に、AXADから実際にデータを抽出して、接続できていることを確認します。</p><span class="step-time">⏱️ 約3分</span><div class="code-block"><pre>downloads/axad_test_prompt.md の内容を使って、AXAD MCPの連携テストをしてください。
+
+完了条件:
+1. 取得できたデータ範囲が分かる
+2. 数字の事実が出ている
+3. 気になる変化が出ている
+4. 次に確認すべきことが出ている
+5. キーや接続情報が表示されていない</pre></div></div></div>
         </div>
     </section>
 
-    <section id="features">
+    <section id="troubleshooting">
         <div class="section-header">
-            <h2>🚀 Codex版の第二の脳でできること</h2>
+            <h2>🧯 詰まりやすいところ</h2>
+            <p>Codexプラグイン前提では、GitHub認証とローカルファイル権限が別物です。ここを先に潰すとセットアップが速くなります。</p>
         </div>
         <div class="features-grid">
             <div class="feature-card">
-                <div class="feature-icon">🧠</div>
-                <h3>思考の外部化</h3>
-                <p>壁打ち、判断材料の整理、論点の分解、意思決定ログ化。頭の中だけに置かない状態を作る。</p>
+                <div class="feature-icon">🔐</div>
+                <h3>GitHub登録・ログイン</h3>
+                <p>アカウント作成は <a href="https://github.com/signup" target="_blank" rel="noopener" style="color: var(--accent-primary);">github.com/signup</a>。リポジトリ作成は <a href="https://github.com/new" target="_blank" rel="noopener" style="color: var(--accent-primary);">github.com/new</a>。公開設定は必ずprivate。</p>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">📁</div>
-                <h3>Vault文脈を読んだ作業</h3>
-                <p>20_Context、30_Projects、40_Knowledge、60_Templatesを参照し、社内前提に沿ってアウトプットする。</p>
+                <div class="feature-icon">🔌</div>
+                <h3>Codex GitHubプラグイン</h3>
+                <p>GitHub API操作はプラグイン接続で進める。Classic tokenを資料に貼る運用はしない。接続できていない時は、Codex側のプラグイン接続状態を先に確認する。</p>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">📊</div>
-                <h3>AXADデータ分析の入口</h3>
-                <p>MCPで取得できる範囲を使い、広告成果の確認、異常検知、レポート観点づくりを支援する。</p>
+                <div class="feature-icon">🗂️</div>
+                <h3>フルディスクアクセス</h3>
+                <p>CodexがDocuments配下のVaultを読めない、ファイル作成できない、Git操作で権限エラーが出る場合は、macOSのフルディスクアクセスにCodexを追加して再起動する。</p>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">🧩</div>
-                <h3>Skills / Connectors活用</h3>
-                <p>ブラウザ確認、GitHub、Google Drive、Docs、Sheets、Slides、Gmail、Calendar、資料作成系を目的別に使う。</p>
+                <div class="feature-icon">🧭</div>
+                <h3>原因の切り分け</h3>
+                <p>GitHubプラグインの認証は「GitHub API用」。ローカルVaultを読む権限、ローカルgitの認証、GitHub Desktopの同期権限は別。どこで失敗しているかを分けて見る。</p>
             </div>
         </div>
-
-        <div class="use-cases-section">
-            <h3 style="text-align: center; font-size: 1.8rem; margin-bottom: 2rem; color: var(--text-primary);">
-                🧠 脳の外付けHDD + 作業エージェント
-            </h3>
-            <div class="use-cases-grid">
-                <div class="use-case-card">
-                    <div class="use-case-header"><span class="use-case-icon">🔍</span><span class="use-case-scene">情報検索</span></div>
-                    <div class="use-case-situation">「このPJの背景を確認したい」</div>
-                    <div class="use-case-action"><span class="label">💬 Codexに言う</span><p>「関連するPJメモとContextを読んで要点出して」</p></div>
-                    <div class="use-case-result"><span class="label">✨ 結果</span><p>前提・未決・次アクションを分けて提示</p></div>
-                </div>
-                <div class="use-case-card">
-                    <div class="use-case-header"><span class="use-case-icon">📝</span><span class="use-case-scene">MTG準備</span></div>
-                    <div class="use-case-situation">会議前に論点を揃えたい</div>
-                    <div class="use-case-action"><span class="label">💬 Codexに言う</span><p>「今日のMTG準備。過去ログから論点出して」</p></div>
-                    <div class="use-case-result"><span class="label">✨ 結果</span><p>決定事項・確認事項・聞くべきことを整理</p></div>
-                </div>
-                <div class="use-case-card">
-                    <div class="use-case-header"><span class="use-case-icon">📣</span><span class="use-case-scene">ChatWork共有</span></div>
-                    <div class="use-case-situation">社内に共有文を出したい</div>
-                    <div class="use-case-action"><span class="label">💬 Codexに言う</span><p>「CW共有テキスト作成して」</p></div>
-                    <div class="use-case-result"><span class="label">✨ 結果</span><p>社内向けのトーンに合わせたコピペ用文面を作成</p></div>
-                </div>
-                <div class="use-case-card">
-                    <div class="use-case-header"><span class="use-case-icon">📈</span><span class="use-case-scene">広告確認</span></div>
-                    <div class="use-case-situation">AXADの状況を見たい</div>
-                    <div class="use-case-action"><span class="label">💬 Codexに言う</span><p>「AXAD MCPで昨日の変化を見て」</p></div>
-                    <div class="use-case-result"><span class="label">✨ 結果</span><p>集計・気になる変化・深掘り観点を提示</p></div>
-                </div>
-                <div class="use-case-card">
-                    <div class="use-case-header"><span class="use-case-icon">🧱</span><span class="use-case-scene">テンプレ整備</span></div>
-                    <div class="use-case-situation">ノート構成が増えてきた</div>
-                    <div class="use-case-action"><span class="label">💬 Codexに言う</span><p>「60_Templatesを見直して、用途別に整理して」</p></div>
-                    <div class="use-case-result"><span class="label">✨ 結果</span><p>新規ノート作成が迷いにくくなる</p></div>
-                </div>
-                <div class="use-case-card">
-                    <div class="use-case-header"><span class="use-case-icon">✅</span><span class="use-case-scene">レビュー</span></div>
-                    <div class="use-case-situation">作ったHTMLや仕様を見直したい</div>
-                    <div class="use-case-action"><span class="label">💬 Codexに言う</span><p>「セルフレビューして、見づらい所を直して」</p></div>
-                    <div class="use-case-result"><span class="label">✨ 結果</span><p>視認性・情報設計・読み手への伝わり方を改善</p></div>
-                </div>
-            </div>
+        <div class="comparison" style="margin-top: 2rem;">
+            <table>
+                <thead>
+                    <tr><th>詰まり</th><th>原因候補</th><th>先に見る場所</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Vaultが読めない</td><td>macOSのファイル権限不足</td><td class="highlight">フルディスクアクセス / Files and Folders</td></tr>
+                    <tr><td>GitHubリポジトリ作成で止まる</td><td>プラグイン未接続、権限不足</td><td class="highlight">CodexのGitHubプラグイン接続状態</td></tr>
+                    <tr><td>pushで止まる</td><td>remote未設定、ローカルgit認証未完了</td><td class="highlight">git remote -v / GitHub Desktop / SSH設定</td></tr>
+                    <tr><td>Classic token時代より詰まる</td><td>手動トークンは単純だが、権限分離が見えにくい</td><td class="highlight">プラグイン認証とローカル権限を分けて確認</td></tr>
+                </tbody>
+            </table>
         </div>
     </section>
-
 
     <section id="usage">
         <div class="section-header">
@@ -1539,1126 +1496,6 @@ AIに慣れていない人
         </div>
     </section>
 
-    <section id="tools">
-        <div class="section-header">
-            <h2>🛠️ 構成ツール</h2>
-            <p>第二の脳を「保管」「作業」「同期」「データ接続」に分けて考えます。</p>
-        </div>
-        <div class="tools-grid">
-            <div class="tool-card">
-                <div class="tool-icon">📁</div>
-                <h3>Obsidian</h3>
-                <div class="role">外付けハードディスク</div>
-                <p>会社・PJ・議事録・判断ログをMarkdownで蓄積。リンクで知識をつなげる。</p>
-            </div>
-            <div class="tool-card">
-                <div class="tool-icon">🤖</div>
-                <h3>Codex</h3>
-                <div class="role">作業エージェント</div>
-                <p>Vaultやコードを読み、必要に応じて調査・編集・検証・共有資料作成まで進める。</p>
-            </div>
-            <div class="tool-card">
-                <div class="tool-icon">☁️</div>
-                <h3>GitHub</h3>
-                <div class="role">履歴と同期</div>
-                <p>変更履歴、レビュー、複数端末の同期に使う。戻せる状態を保つ。</p>
-            </div>
-            <div class="tool-card">
-                <div class="tool-icon">🔌</div>
-                <h3>AXAD MCP</h3>
-                <div class="role">広告データ接続</div>
-                <p>キーは別途共有。接続後は取得可能な範囲で広告データの確認・集計を支援する。</p>
-            </div>
-        </div>
-
-        <div class="flow-diagram">
-            <div class="flow-row">
-                <div class="flow-node"><strong>00_Inbox</strong><span>思いつき・未整理メモ</span></div>
-                <div class="flow-arrow">→</div>
-                <div class="flow-node"><strong>20_Context</strong><span>事業部・業務前提</span></div>
-                <div class="flow-arrow">→</div>
-                <div class="flow-node"><strong>30_Projects</strong><span>PJ進捗・次アクション</span></div>
-                <div class="flow-arrow">→</div>
-                <div class="flow-node"><strong>40_Knowledge</strong><span>再利用できる知識</span></div>
-            </div>
-        </div>
-    </section>
-
-    <section id="one-hour">
-        <div class="section-header">
-            <h2>⏱️ 1時間で作る完成形</h2>
-            <p>このページのゴールは、受講者が資料を見ながら自分で初期環境を作り、すぐ使い始められる状態にすることです。</p>
-        </div>
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">🤖</div>
-                <h3>Codex</h3>
-                <p>Vaultを読める。AGENTS.mdが入っている。次回から作業ルールを毎回説明しなくてよい。</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">📚</div>
-                <h3>Obsidian</h3>
-                <p>テンプレートとLecture 01〜09が入っている。どこに何を書くか、最初の使い方が分かる。</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">☁️</div>
-                <h3>GitHub</h3>
-                <p>Vaultのバックアップ先になっている。10分ごとのpull / commit / push自動同期が動く。</p>
-            </div>
-        </div>
-        <div class="comparison" style="margin-top: 2rem;">
-            <table>
-                <thead>
-                    <tr><th>順番</th><th>目安</th><th>受講者がやること</th><th>完了条件</th></tr>
-                </thead>
-                <tbody>
-                    <tr><td>1</td><td>5分</td><td>GitHubアカウントとCodex GitHubプラグインを確認する</td><td class="highlight">GitHubにログインでき、CodexからGitHubを使える</td></tr>
-                    <tr><td>2</td><td>7分</td><td>Obsidianを入れてVaultを作る</td><td class="highlight">Documents/Obsidian/MyVault がある</td></tr>
-                    <tr><td>3</td><td>6分</td><td>CodexでVaultを開き、フルディスクアクセスを確認する</td><td class="highlight">CodexがVault内のファイルを読める</td></tr>
-                    <tr><td>4</td><td>8分</td><td>配布ファイルをダウンロードし、Setup PromptをCodexに貼る</td><td class="highlight">AGENTS.md、テンプレート、Lecture 01〜09が入る</td></tr>
-                    <tr><td>5</td><td>10分</td><td>GitHub連携プロンプトでprivate repositoryへ接続する</td><td class="highlight">VaultがGitHubにpushされている</td></tr>
-                    <tr><td>6</td><td>10分</td><td>10分自動同期プロンプトを実行する</td><td class="highlight">pull → commit → pushの自動同期ログが確認できる</td></tr>
-                    <tr><td>7</td><td>7分</td><td>Obsidianの使い方を1回試す</td><td class="highlight">Inbox、Context、Project、Meeting、Outputの使い分けが分かる</td></tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="callout">
-            <strong>進め方:</strong> 手作業で迷うところは考え込まず、該当プロンプトをCodexに貼って確認させます。受講者が覚えるべきことは「どの順番で進めるか」と「完了条件を確認すること」です。
-        </div>
-    </section>
-
-    <section id="setup">
-        <div class="section-header">
-            <h2>⚙️ セットアップ手順</h2>
-            <p>Obsidian、GitHub、Codexを準備して、配布ファイルとプロンプトで第二の脳を作ります。</p>
-        </div>
-
-        <div class="user-type-selector">
-            <div class="user-type-card selected" data-type="beginner" onclick="selectUserType('beginner')">
-                <div class="icon">🆕</div>
-                <h4>はじめての方</h4>
-                <p>Obsidian・GitHubを<br>これから準備する</p>
-            </div>
-            <div class="user-type-card" data-type="experienced" onclick="selectUserType('experienced')">
-                <div class="icon">💻</div>
-                <h4>経験者の方</h4>
-                <p>すでにVaultやGitHubを<br>使ったことがある</p>
-            </div>
-        </div>
-
-        <div id="beginner-content" class="setup-content active">
-            <div class="comparison" style="margin-bottom: 3rem;">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>順番</th>
-                            <th>受講者がやること</th>
-                            <th>Codexに任せること</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>1</td><td>GitHub登録・Codexプラグイン確認</td><td class="highlight">接続状態の確認</td></tr>
-                        <tr><td>2</td><td>Obsidianインストール・Vault作成</td><td class="highlight">なし。まず箱を作る</td></tr>
-                        <tr><td>3</td><td>CodexでVaultを開く</td><td class="highlight">Vaultを読めるか確認</td></tr>
-                        <tr><td>4</td><td>配布ファイルをダウンロード</td><td class="highlight">AGENTS.md、テンプレート、Lecture配置</td></tr>
-                        <tr><td>5</td><td>GitHub連携プロンプトを貼る</td><td class="highlight">private repository作成・push</td></tr>
-                        <tr><td>6</td><td>10分自動同期プロンプトを貼る</td><td class="highlight">pull / commit / push自動化</td></tr>
-                        <tr><td>7</td><td>使い方を1回試す</td><td class="highlight">Contextを読んだ要約・整理</td></tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="steps">
-                <div class="step">
-                    <div class="step-content">
-                        <h3>1. GitHub登録とCodexプラグインを確認する</h3>
-                        <p>Vaultのバックアップ先を作る準備です。リポジトリ作成は後でCodexに任せます。</p>
-                        <span class="step-time">⏱️ 約5分</span>
-                        <div class="note-box">
-                            <ol style="margin: 0; padding-left: 1.5rem;">
-                                <li>GitHubアカウントを作成、またはログインする<br><a href="https://github.com/signup" target="_blank" rel="noopener" style="color: var(--accent-primary);">https://github.com/signup</a></li>
-                                <li>ログイン済みの場合は <a href="https://github.com/login" target="_blank" rel="noopener" style="color: var(--accent-primary);">https://github.com/login</a> を確認する</li>
-                                <li>CodexのGitHubプラグインが接続済みか確認する</li>
-                                <li>トークンや認証情報は、資料・AGENTS.md・Obsidianノートに書かない</li>
-                            </ol>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="step">
-                    <div class="step-content">
-                        <h3>2. ObsidianをインストールしてVaultを作る</h3>
-                        <p>情報を保管する場所を作ります。ここが第二の脳の本体です。</p>
-                        <span class="step-time">⏱️ 約7分</span>
-                        <div class="note-box">
-                            <ol style="margin: 0; padding-left: 1.5rem;">
-                                <li><a href="https://obsidian.md" target="_blank" rel="noopener" style="color: var(--accent-primary);">https://obsidian.md</a> からObsidianをインストールする</li>
-                                <li>Obsidianを起動し、<strong>Create new vault</strong> を選ぶ</li>
-                                <li>Vault名を <code>MyVault</code> にする</li>
-                                <li>保存場所は <code>Documents/Obsidian/</code> 配下を推奨</li>
-                                <li><code>Documents/Obsidian/MyVault</code> ができればOK</li>
-                            </ol>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="step">
-                    <div class="step-content">
-                        <h3>3. CodexでVaultを開く</h3>
-                        <p>CodexがObsidianの中身を読める状態にします。ここで詰まる場合は、権限設定を先に直します。</p>
-                        <span class="step-time">⏱️ 約6分</span>
-                        <div class="note-box">
-                            <ol style="margin: 0; padding-left: 1.5rem;">
-                                <li>Codexを開く</li>
-                                <li>作業フォルダとして作成したVaultを選ぶ</li>
-                                <li>例: <code>~/Documents/Obsidian/MyVault</code></li>
-                                <li>macOSの場合は「システム設定 → プライバシーとセキュリティ → フルディスクアクセス」でCodexにアクセス許可を付ける</li>
-                                <li>Codexに「このVaultのフォルダ一覧を確認して」と依頼し、読めればOK</li>
-                            </ol>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="step">
-                    <div class="step-content">
-                        <h3>4. 配布ファイルをダウンロードする</h3>
-                        <p>Lecture 01〜09、AGENTS.md作成プロンプト、セットアッププロンプトをダウンロードします。</p>
-                        <span class="step-time">⏱️ 約2分</span>
-                        <div class="difference-grid">
-                            <a class="btn btn-secondary" href="downloads/ads_context_bundle.zip" download>Lecture 01〜09</a>
-                            <a class="btn btn-secondary" href="downloads/create_agents_prompt.md" download>AGENTS.md Prompt</a>
-                            <a class="btn btn-secondary" href="downloads/setup_obsidian_codex_prompt.md" download>Setup Prompt</a>
-                            <a class="btn btn-secondary" href="downloads/connect_github_prompt.md" download>GitHub Prompt</a>
-                            <a class="btn btn-secondary" href="downloads/autosync_prompt.md" download>10分同期 Prompt</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="step">
-                    <div class="step-content">
-                        <h3>5. CodexにObsidianの土台を作ってもらう</h3>
-                        <p>Setup PromptをCodexに貼ります。AGENTS.md、テンプレート、Lecture 01〜09の配置まで任せます。</p>
-                        <span class="step-time">⏱️ 約8分</span>
-                        <div class="code-block"><pre>自分用の「第二の脳」としてObsidian Vaultを構築してください。
-
-この資料からダウンロードした以下の配布ファイルを使います。
-- ads_context_bundle.zip
-- create_agents_prompt.md
-
-以下を作成・配置してください。
-
-1. 標準フォルダ構成
-- 00_Inbox
-- 07_DailyLog
-- 08_MeetingLog
-- 10_Goals
-- 20_Context
-- 30_Projects
-- 40_Knowledge
-- 50_Literature
-- 60_Templates
-- 70_Meetings
-- 80_Outputs
-
-2. 60_Templates
-- Project
-- Meeting_Log
-- Decision_Log
-- Context
-- HTML_Output_Template
-- Knowledge
-- Literature
-- Fleeting
-- System_Spec
-
-3. AGENTS.md
-create_agents_prompt.md の内容を使って作成してください。
-秘密情報、個人情報、キーは書かないでください。
-
-4. 広告コンテキスト
-- ads_context_bundle.zip を展開する
-- ads_context/ 配下のMarkdownを 20_Context/AXIS/Ads/ に配置
-- Lecture_01〜Lecture_09 の9ファイルだけが揃っていることを確認
-
-5. 動作確認
-作成したフォルダ、テンプレート、AGENTS.md、広告コンテキストの配置結果を報告してください。</pre></div>
-                    </div>
-                </div>
-
-                <div class="step">
-                    <div class="step-content">
-                        <h3>6. GitHubをVaultのバックアップ先にする</h3>
-                        <p>GitHub連携プロンプトをCodexに貼ります。Vaultをprivate repositoryに接続し、バックアップできる状態にします。</p>
-                        <span class="step-time">⏱️ 約10分</span>
-                        <div class="code-block"><pre>downloads/connect_github_prompt.md の内容を使って、Obsidian Vault と GitHub を連携してください。
-
-完了条件:
-1. Git管理されている
-2. private repository が作成されている
-3. remote が設定されている
-4. main ブランチにpush済み
-5. .gitignoreで機密情報が除外されている
-6. GitHub repository URLを報告している</pre></div>
-                    </div>
-                </div>
-
-                <div class="step">
-                    <div class="step-content">
-                        <h3>7. 10分ごとの自動pull / pushを設定する</h3>
-                        <p>10分自動同期プロンプトをCodexに貼ります。Obsidianをバックアップとしてだけでなく、継続同期できる状態にします。</p>
-                        <span class="step-time">⏱️ 約10分</span>
-                        <div class="code-block"><pre>downloads/autosync_prompt.md の内容を使って、Obsidian Vault のGitHub同期を10分ごとに自動実行する設定を作ってください。
-
-完了条件:
-1. 自動同期スクリプトがある
-2. launchd に登録されている
-3. 最初の実行ログを確認できる
-4. GitHub push が成功している
-5. コンフリクト時は自動解決せず停止する設定になっている</pre></div>
-                    </div>
-                </div>
-
-                <div class="step">
-                    <div class="step-content">
-                        <h3>8. 使い方を1回試す</h3>
-                        <p>環境構築だけで終わらせず、CodexがObsidianを読む感覚を確認します。</p>
-                        <span class="step-time">⏱️ 約7分</span>
-                        <div class="code-block"><pre>20_Context/AXIS/Ads の Lecture_01〜Lecture_09 を読んで、以下を出してください。
-
-1. 広告運用で最初に理解すべきこと
-2. 重要な用語
-3. 実務で迷いやすいポイント
-4. 追加で確認した方がよいこと
-5. このVaultに次に追加するとよいメモ
-
-推測は Assumption: と明示してください。</pre></div>
-                    </div>
-                </div>
-
-                <div class="step">
-                    <div class="step-content">
-                        <h3>9. 最終チェック</h3>
-                        <p>1時間の最後に、完成条件をCodexに確認させます。</p>
-                        <span class="step-time">⏱️ 約5分</span>
-                        <div class="code-block"><pre>初期セットアップの完了確認をしてください。
-
-確認すること:
-1. AGENTS.mdがVaultルートにあり、Codexが使える状態か
-2. 60_Templatesに必要なテンプレートがあるか
-3. 20_Context/AXIS/AdsにLecture 01〜09があるか
-4. GitHubのprivate repositoryにpush済みか
-5. 10分ごとの自動pull / push設定が動いているか
-6. 次回から受講者が何をどう依頼すればよいか
-
-不足があれば、何をすれば完了するかを順番に出してください。</pre></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div id="experienced-content" class="setup-content">
-            <div class="steps">
-                <div class="step">
-                    <div class="step-content">
-                        <h3>既存Vaultに追加する</h3>
-                        <p>すでにObsidianとGitHubを使っている場合は、VaultをCodexで開き、配布ファイルとセットアッププロンプトだけ実行します。</p>
-                        <div class="code-block"><pre>やること:
-1. 既存VaultをCodexで開く
-2. 配布ファイル3点をダウンロードする
-3. セットアッププロンプトをCodexに貼る
-4. 20_Context/AXIS/Ads と AGENTS.md の配置結果を確認する</pre></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-    <section id="troubleshooting">
-        <div class="section-header">
-            <h2>🧯 詰まりやすいところ</h2>
-            <p>Codexプラグイン前提では、GitHub認証とローカルファイル権限が別物です。ここを先に潰すとセットアップが速くなります。</p>
-        </div>
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">🔐</div>
-                <h3>GitHub登録・ログイン</h3>
-                <p>アカウント作成は <a href="https://github.com/signup" target="_blank" rel="noopener" style="color: var(--accent-primary);">github.com/signup</a>。リポジトリ作成は <a href="https://github.com/new" target="_blank" rel="noopener" style="color: var(--accent-primary);">github.com/new</a>。公開設定は必ずprivate。</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🔌</div>
-                <h3>Codex GitHubプラグイン</h3>
-                <p>GitHub API操作はプラグイン接続で進める。Classic tokenを資料に貼る運用はしない。接続できていない時は、Codex側のプラグイン接続状態を先に確認する。</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🗂️</div>
-                <h3>フルディスクアクセス</h3>
-                <p>CodexがDocuments配下のVaultを読めない、ファイル作成できない、Git操作で権限エラーが出る場合は、macOSのフルディスクアクセスにCodexを追加して再起動する。</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🧭</div>
-                <h3>原因の切り分け</h3>
-                <p>GitHubプラグインの認証は「GitHub API用」。ローカルVaultを読む権限、ローカルgitの認証、GitHub Desktopの同期権限は別。どこで失敗しているかを分けて見る。</p>
-            </div>
-        </div>
-        <div class="comparison" style="margin-top: 2rem;">
-            <table>
-                <thead>
-                    <tr><th>詰まり</th><th>原因候補</th><th>先に見る場所</th></tr>
-                </thead>
-                <tbody>
-                    <tr><td>Vaultが読めない</td><td>macOSのファイル権限不足</td><td class="highlight">フルディスクアクセス / Files and Folders</td></tr>
-                    <tr><td>GitHubリポジトリ作成で止まる</td><td>プラグイン未接続、権限不足</td><td class="highlight">CodexのGitHubプラグイン接続状態</td></tr>
-                    <tr><td>pushで止まる</td><td>remote未設定、ローカルgit認証未完了</td><td class="highlight">git remote -v / GitHub Desktop / SSH設定</td></tr>
-                    <tr><td>Classic token時代より詰まる</td><td>手動トークンは単純だが、権限分離が見えにくい</td><td class="highlight">プラグイン認証とローカル権限を分けて確認</td></tr>
-                </tbody>
-            </table>
-        </div>
-    </section>
-
-    <section id="agents">
-        <div class="section-header">
-            <h2>🧭 AGENTS.mdを最初から入れる</h2>
-            <p>受講者がゼロから試行錯誤しなくていいように、個人名・端末固有・デプロイ自動化などを外した配布版AGENTS.mdを最初から入れます。</p>
-        </div>
-        <div class="difference-grid">
-            <div class="difference-card">
-                <h3>AGENTS.mdが効く理由</h3>
-                <ul>
-                    <li>Codexに毎回説明しなくても、仕事の進め方が揃う</li>
-                    <li>事実・推測・判断材料を分けて扱える</li>
-                    <li>Obsidianのどこを読めばいいか迷わなくなる</li>
-                    <li>確認が必要な作業と自律実行してよい作業が分かれる</li>
-                    <li>セットアップ後も同じ品質で再現しやすい</li>
-                </ul>
-            </div>
-            <div class="difference-card">
-                <h3>踏襲する運用</h3>
-                <ul>
-                    <li>Plan → Executeで大きい作業を進める</li>
-                    <li>既存パターンを読んでから変更する</li>
-                    <li>確認が必要な作業と自律実行できる作業を分ける</li>
-                    <li>Vaultのテンプレート、YAML、リンクルールを守る</li>
-                    <li>ChatWork共有文やHTML出力の確認を標準化する</li>
-                    <li>git fetch / status / logで状態を確認してから作業する</li>
-                </ul>
-            </div>
-        </div>
-        <p class="lead" style="margin-top: 2rem;">下は要点の抜粋です。実際にCodexへ貼る全文は、配布ファイルの <code>create_agents_prompt.md</code> に入れています。</p>
-        <div class="code-block"><pre># AGENTS.md スターター抜粋
-
-## 役割
-- 判断を代行するのではなく、判断材料を構造化する
-- 盲点を指摘し、選択肢とトレードオフを見せる
-- 答えを押し付けず、必要なら問いで引き出す
-
-## 行動原則
-1. 事実で動く。推測で埋めない
-2. 既存パターンを尊重する
-3. 頼まれたこと以外を足さない
-4. 変更は小さく、影響範囲を明確にする
-5. 結論から入る
-6. 「全部OKです」は疑う
-7. 言語化に詰まっている時は問いで引き出す
-
-## 進め方
-- 影響範囲が大きい作業は Plan → Execute で進める
-- 小さな調査、ログ確認、軽微修正、lint / test / build は自律実行してよい
-- 要件変更、設計変更、外部送信、デプロイ、破壊的操作、本番データ、認証情報、課金に関わる作業は確認する
-
-## セッション開始時
-- gitリポ内の作業では git fetch origin → git status -sb を確認する
-- gitリポ内の作業では git log --oneline -20 を確認する
-- gitリポでない場所では、必要なファイルだけ読んで進める
-
-## Vault運用
-- 新規ノートは60_Templatesを使う
-- YAMLフロントマターを付ける
-- 関連ノートへのリンクを最低1つ付ける
-- 不明点は TODO: として残す
-- 事実と解釈を分け、解釈は Assumption: と明示する
-- PJに関係する作業は、関連PJメモの更新要否を確認する
-
-## Git運用
-- featureブランチで進める
-- main / default に直接変更を積まない
-- push前に git diff --cached で機密混入を確認する
-
-## Codexへの期待
-- 調査、整理、編集、検証、共有文作成を支援する
-- 影響範囲が大きい作業は先に計画を出す
-- 小さな確認や既存ファイルの軽微修正は自律的に進める
-- HTML系アウトプットは完了報告前に開いて確認する
-
-## AXAD MCP
-- キーは本文に書かない
-- 読み取り専用で使う
-- 数値の確認、集計、異常候補の抽出、レポート観点づくりに使う</pre></div>
-    </section>
-
-    <section id="templates">
-        <div class="section-header">
-            <h2>📚 Obsidianテンプレート構成</h2>
-            <p>実運用のVaultをそのまま全部コピーするのではなく、初期導入で迷わない最小セットに絞ります。</p>
-        </div>
-        <div class="comparison">
-            <table>
-                <thead>
-                    <tr><th>テンプレート</th><th>用途</th><th>最低限入れる項目</th></tr>
-                </thead>
-                <tbody>
-                    <tr><td>Project</td><td>30_Projectsの正本</td><td class="highlight">progress / next_action / blocked_by / needs_human_decision</td></tr>
-                    <tr><td>Meeting_Log</td><td>会議の議事録</td><td class="highlight">決定事項 / TODO / 関連PJ / 次回確認</td></tr>
-                    <tr><td>Decision_Log</td><td>重要判断の記録</td><td class="highlight">背景 / 選択肢 / 判断 / トレードオフ / 見直し条件</td></tr>
-                    <tr><td>Context</td><td>事業部・業務前提</td><td class="highlight">事実 / Assumption / sensitivity / 関連PJ</td></tr>
-                    <tr><td>Knowledge</td><td>再利用する判断軸</td><td class="highlight">要点 / 使いどころ / 注意点 / 関連PJ</td></tr>
-                    <tr><td>Literature</td><td>記事・本・動画メモ</td><td class="highlight">要約 / 自分への適用 / 引用元 / 評価</td></tr>
-                    <tr><td>Fleeting</td><td>未整理メモ</td><td class="highlight">思いつき / 仕分け先 / TODO / 関連候補</td></tr>
-                    <tr><td>System_Spec</td><td>システム開発PJ</td><td class="highlight">目的 / 要件 / 構成 / 外部連携 / 検証方法</td></tr>
-                    <tr><td>HTML_Output_Template</td><td>HTML・共有資料の設計</td><td class="highlight">対象者 / 目的 / 必須要素 / 禁止事項 / 確認結果</td></tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="callout">
-            <strong>考え方:</strong> 実運用のVaultには、ダッシュボード、端末別ログ、追加テンプレートなどもあります。ただし初回導入では、まず「Inboxに入れる」「Contextを読ませる」「Projectを進める」「Meetingを残す」「Outputを作る」が迷わず回ることを優先します。
-        </div>
-    </section>
-
-    <section id="mcp">
-        <div class="section-header">
-            <h2>🔌 AXAD MCPでできること</h2>
-            <p>広告運用データを、Codexの作業文脈へ接続します。キー共有は別途。</p>
-        </div>
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">📈</div>
-                <h3>成果確認</h3>
-                <p>期間、媒体、キャンペーン、広告セットなどの軸で、取得できる範囲の数値を確認する。</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🔎</div>
-                <h3>異常候補の発見</h3>
-                <p>前日比、週次推移、急変、未配信、CPA悪化など、見るべき候補を出す。</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🧾</div>
-                <h3>報告の下書き</h3>
-                <p>数値の事実、解釈、追加確認事項を分けて、社内共有しやすい文面に整える。</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🛡️</div>
-                <h3>読み取り専用</h3>
-                <p>広告データを見るための接続口として使う。ここでは、数値をどう読み、どう整理し、どう報告に変えるかに集中する。</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="prompts">
-        <div class="section-header">
-            <h2>💬 セットアップ用プロンプト</h2>
-            <p>配布ファイルをダウンロードして、プロンプトをコピペするだけでObsidianの土台とLecture 01〜09を入れます。</p>
-        </div>
-        <div class="tools-grid" style="margin-bottom: 2rem;">
-            <div class="tool-card">
-                <div class="tool-icon">📄</div>
-                <h3>Lecture 01〜09</h3>
-                <div class="role">Lecture 01〜09</div>
-                <p>広告運用の基礎講義Lecture 01〜09だけをまとめた配布ファイル。初回導入では余計な内部Contextを入れず、講義内容をそのままCodexが参照できる状態にする。</p>
-                <a class="btn btn-secondary" href="downloads/ads_context_bundle.zip" download>ダウンロード</a>
-            </div>
-            <div class="tool-card">
-                <div class="tool-icon">🛠️</div>
-                <h3>AGENTS.md Prompt</h3>
-                <div class="role">配布版AGENTS.md</div>
-                <p>受講者が最初から同じ作業ルールでCodexを使えるようにするためのコピペ用プロンプト。</p>
-                <a class="btn btn-secondary" href="downloads/create_agents_prompt.md" download>ダウンロード</a>
-            </div>
-            <div class="tool-card">
-                <div class="tool-icon">💬</div>
-                <h3>Setup Prompt</h3>
-                <div class="role">コピペ用</div>
-                <p>Obsidianフォルダ作成、テンプレート作成、広告コンテキスト配置まで依頼するプロンプト。</p>
-                <a class="btn btn-secondary" href="downloads/setup_obsidian_codex_prompt.md" download>ダウンロード</a>
-            </div>
-            <div class="tool-card">
-                <div class="tool-icon">📋</div>
-                <h3>AGENTS.md作成</h3>
-                <div class="role">追加プロンプト</div>
-                <p>セットアップ作業でそのまま使うコピペ用プロンプト。</p>
-                <a class="btn btn-secondary" href="downloads/create_agents_prompt.md" download>ダウンロード</a>
-            </div>
-            <div class="tool-card">
-                <div class="tool-icon">📋</div>
-                <h3>GitHub連携</h3>
-                <div class="role">追加プロンプト</div>
-                <p>セットアップ作業でそのまま使うコピペ用プロンプト。</p>
-                <a class="btn btn-secondary" href="downloads/connect_github_prompt.md" download>ダウンロード</a>
-            </div>
-            <div class="tool-card">
-                <div class="tool-icon">📋</div>
-                <h3>10分自動同期</h3>
-                <div class="role">追加プロンプト</div>
-                <p>セットアップ作業でそのまま使うコピペ用プロンプト。</p>
-                <a class="btn btn-secondary" href="downloads/autosync_prompt.md" download>ダウンロード</a>
-            </div>
-        </div>
-        <div class="prompt-grid">
-            <div class="prompt-card">
-                <h3>一括セットアップ</h3>
-                <div class="prompt-content"><pre>自分用の「第二の脳」としてObsidian Vaultを構築してください。
-
-この資料からダウンロードした以下の配布ファイルを使います。
-- ads_context_bundle.zip
-- create_agents_prompt.md
-
-以下を作成・配置してください。
-
-1. 標準フォルダ構成
-- 00_Inbox
-- 07_DailyLog
-- 08_MeetingLog
-- 10_Goals
-- 20_Context
-- 30_Projects
-- 40_Knowledge
-- 50_Literature
-- 60_Templates
-- 70_Meetings
-- 80_Outputs
-
-2. 60_Templates
-- Project
-- Meeting_Log
-- Decision_Log
-- Context
-- HTML_Output_Template
-- Knowledge
-- Literature
-- Fleeting
-- System_Spec
-
-実運用Vaultを完全コピーするのではなく、
-初期導入で迷わない最小構成として作成してください。
-
-3. AGENTS.md
-この資料のAGENTS.mdスターターをベースに作成してください。
-秘密情報、個人情報、キーは書かないでください。
-
-4. 広告コンテキスト
-- ads_context_bundle.zip を展開する
-- ads_context/ 配下のMarkdownを 20_Context/AXIS/Ads/ に配置
-- Lecture_01〜Lecture_09 の9ファイルだけが揃っていることを確認
-
-5. 動作確認
-作成したフォルダ、テンプレート、AGENTS.md、広告コンテキストの配置結果を報告してください。</pre></div>
-            </div>
-            <div class="prompt-card">
-                <h3>広告コンテキスト配置</h3>
-                <div class="prompt-content"><pre>ダウンロード済みの広告コンテキストをObsidianに配置してください。
-
-使うファイル:
-- ads_context_bundle.zip
-
-配置先:
-- ads_context/ 配下のMarkdownすべて -> 20_Context/AXIS/Ads/
-
-配置後に以下を確認してください。
-1. YAMLフロントマターがあるか
-2. sensitivity が restricted になっているか
-3. Lecture_01〜Lecture_09 の9ファイルだけが揃っているか
-4. Codexが参照すべき判断軸と業務前提が書かれているか
-
-足りない点があれば、推測で埋めず TODO: として追記してください。</pre></div>
-            </div>
-            <div class="prompt-card">
-                <h3>PJメモ作成</h3>
-                <div class="prompt-content"><pre>新しいPJメモを作成したいです。
-
-以下を確認してから、30_Projects配下に保存するドラフトを作ってください。
-
-1. どの事業部/PJか
-2. PJの目的
-3. 現在の状態
-4. 次アクション
-5. 人間の判断が必要な点
-6. 関連するContextや既存メモ
-
-テンプレートは60_TemplatesのPJメモを使ってください。
-不明点は推測せず TODO: にしてください。</pre></div>
-            </div>
-            <div class="prompt-card">
-                <h3>セットアップ確認</h3>
-                <div class="prompt-content"><pre>Obsidianセットアップが完了したので、以下を確認してください。
-
-1. 標準フォルダが揃っているか
-2. 60_Templatesに必要なテンプレートがあるか
-3. AGENTS.mdが読みやすく、秘密情報を含んでいないか
-4. 20_Context/AXIS/AdsにLecture 01〜09の9ファイルだけが入っているか
-5. Codexが参照すべき入口が分かるか
-
-最後に、足りないもの・次に整えるべきものを一覧で出してください。</pre></div>
-            </div>
-            <div class="prompt-card">
-                <h3>AGENTS.md作成</h3>
-                <div class="prompt-content"><pre>Obsidian Vault用のAGENTS.mdを作成してください。
-
-目的:
-CodexがこのVaultを読む時に、毎回同じ品質で作業できるようにするためです。
-
-作成先:
-Vaultルートの AGENTS.md
-
-このAGENTS.mdは、受講者が最初から同じ作業ルールでCodexを使えるようにするための配布版です。個人名、端末固有情報、セルフマージなどの個人PC前提の運用は含めません。
-
-以下の内容で作成してください。
-
----
-
-# Obsidian Vault 用 AGENTS.md
-
-## 役割
-
-あなたは、ユーザーの判断を代行するのではなく、判断材料を構造化して差し出す補助者です。
-
-- 盲点を指摘する
-- 答えを押し付けない
-- 選択肢とトレードオフを見せる
-- 不明点を推測で埋めず、確認する
-- ユーザーが言語化に詰まっている時は、問いで引き出す
-
-## 行動原則
-
-1. 事実で動く。推測で動かない。知らないことは「知らない」と言う
-2. 既存パターンを尊重する。壊すなら理由を示す
-3. 頼まれたこと以外を勝手に足さない
-4. 変更は小さく、確実に。影響範囲を最小化する
-5. 結論から入る
-6. お世辞で「全部OKです」と言わない。リスクや不足を確認する
-7. 判断材料を構造化し、選択肢とトレードオフを提示する
-
-## 作業の進め方
-
-### Plan → Execute
-
-影響範囲が大きい作業は、まず計画を出す。
-
-1. 目的
-2. 作業範囲
-3. 変更するファイル
-4. リスク
-5. 確認が必要な点
-
-ユーザーの承認後に実行する。
-
-### 確認が必要な作業
-
-以下は、必ず確認してから進める。
-
-- 要件変更
-- 設計変更
-- デプロイ
-- 外部サービスへの送信
-- Vault内の新規ノート作成
-- 破壊的操作
-- 本番データに関わる操作
-- 認証情報、課金、顧客影響に関わる操作
-- 判断材料が足りず、推測で進めると手戻りが大きい作業
-
-### 自律実行してよい作業
-
-以下は、必要に応じて自律的に進めてよい。
-
-- 読み取り調査
-- 差分確認
-- ログ確認
-- lint / test / build などの検証
-- 既存ファイルの軽微修正
-- 既存パターンに沿った低リスクな修正
-
-ただし、結果と検証内容は必ず報告する。
-
-## セッション開始時
-
-- gitリポ内の作業では、まず git fetch origin と git status -sb でリモートとの差分を確認する
-- gitリポ内の作業では、git log --oneline -20 で直近の変更を把握する
-- gitリポでない場所や単発相談では、必要なファイルだけ確認してから進める
-- メモリや前提の記述を鵜呑みにせず、ファイルを読んで確認する
-
-## Git運用
-
-- 開発作業はfeatureブランチで進める
-- main / default ブランチに直接変更を積まない
-- コミットメッセージは「なぜ」を書く
-- push前に git diff --cached で機密情報混入がないか確認する
-- .env、sa-key.json、認証トークン等をコミットしない
-- コンフリクトが起きたら自動解決せず、状況を報告する
-
-## Vault構造
-
-このVaultは以下の構造で管理する。
-
-MyVault/
-├── 00_Inbox/          # 未整理メモ
-├── 07_DailyLog/       # 日次ログ
-├── 08_MeetingLog/     # MTG文字起こし・議事録
-├── 10_Goals/          # 目標管理
-├── 20_Context/        # 事業部・業務コンテキスト
-├── 30_Projects/       # PJ管理
-├── 40_Knowledge/      # 横断ナレッジ
-├── 50_Literature/     # 読書・記事メモ
-├── 60_Templates/      # テンプレート
-├── 70_Meetings/       # 定例・レビュー会
-└── 80_Outputs/        # HTMLや共有用成果物
-
-補足:
-- 05_CommandCenter/ は初期作成必須ではない
-- GitHub自動同期など、運用スクリプトが必要になった時に作成する
-
-## Vault運用ルール
-
-- 推測・創作を禁止する
-- 不明点は TODO: として残す
-- 事実と解釈を分離する
-- 解釈を書く場合は Assumption: と明示する
-- 新規ノート作成時は、必ず 60_Templates/ のテンプレートを使う
-- 全ノートにYAMLフロントマターを付ける
-- 関連する既存ノートへのリンクを最低1つ付ける
-- 孤立ノートを作らない
-
-## 会話開始時の確認
-
-新しい話題や作業を始める時は、必要に応じて以下を確認する。
-
-1. 何についての話か
-   - 壁打ち / 要件定義 / 開発 / 振り返り / その他
-2. どの事業部・PJに関連するか
-3. 読み込むべきコンテキスト
-   - 20_Context/{事業部}/
-   - 30_Projects/{事業部}/{PJ名}/
-   - その他関連メモ
-
-## 開発作業時の参照
-
-開発作業では、以下を確認する。
-
-1. コンテキスト
-   - 20_Context/{事業部}/
-2. 要件定義
-   - 30_Projects/{PJ}/
-   - または docs/requirements.md
-3. 技術要件
-   - System_Spec.md
-   - または docs/technical-spec.md
-
-## フォルダ別ルール
-
-### 00_Inbox
-- 未整理メモを入れる場所
-- 後でPJ、Knowledge、Contextへ仕分ける
-
-### 20_Context
-- 事業部・業務の前提情報を保存する
-- AIが判断するための前提として使う
-- sensitivityを必ず付ける
-
-### 30_Projects
-- PJの正本を管理する
-- progress、next_action、blocked_by、needs_human_decisionを更新対象にする
-- 作業後は関連PJメモ更新要否を確認する
-
-### 40_Knowledge
-- PJ横断で使える普遍的な知識を保存する
-- 重要な意思決定はDecision Logに残す
-
-### 60_Templates
-- 新規ノート作成時に使うテンプレートを置く
-- Project、Meeting_Log、Decision_Log、Context、HTML_Output_Template、Knowledge、Literature、Fleeting、System_Specを用意する
-
-### 80_Outputs
-- HTML、共有資料、出力物を保存する
-- HTML系アウトプットは、完了報告前にブラウザで開いて確認する
-
-## YAML共通項目
-
-すべてのノートに以下を入れる。
-
----
-title:
-type:
-updated: YYYY-MM-DD
----
-
-## sensitivity
-
-sensitivity: normal      # 外部共有可
-sensitivity: restricted  # 社内のみ
-sensitivity: secret      # 外部同期禁止、PII含む可能性あり
-
-## ChatWork共有文
-
-ユーザーが以下のように依頼した場合、ChatWorkに貼れる文面を作る。
-
-- CW共有
-- ChatWorkで共有する文面
-- コピペ用
-- 共有文
-
-ルール:
-- 通常テキストを中心にする
-- [info] は要点や依頼事項にだけ使う
-- [code] は一覧、構造、ログ、置換案などに使う
-- 一文を短くする
-- 事実、依頼、確認事項を分ける
-- 送信前に勝手に外部送信しない
-
-## HTML系アウトプット
-
-HTML、仕様書、フロー図、共有用説明ノートなどを作成・更新したら、完了報告前に対象成果物を開く。
-
-- Standalone HTMLならブラウザで開く
-- ObsidianノートならObsidianで開く
-- 見づらい箇所、文字詰まり、リンク切れ、ダウンロード導線を確認する
-
-## AXAD MCP
-
-AXAD MCPは読み取り専用で使う。
-
-できること:
-- 広告データの確認
-- 集計
-- 異常候補の抽出
-- レポート観点づくり
-- 判断材料の整理
-
-ルール:
-- キーは本文に書かない
-- 接続情報は別途安全に共有する
-- 取得した情報の共有範囲を確認する
-- 本番変更や外部送信は行わない
-
-## ワークフロー自動化
-
-- 2回以上繰り返すプロンプトはコマンド化・テンプレート化を検討する
-- 複数ステップの定型作業は1つのコマンドやプロンプトにまとめる
-
-## 禁止事項
-
-- 機密情報の外部出力
-- PIIの本文記載
-- 要件の勝手な変更
-- 確認なしのデプロイ
-- 確認なしの外部送信
-- 確認なしの破壊的操作
-- 認証情報のハードコード
-- .env やキーの共有資料への記載
-
-## 完了報告
-
-作業完了時は以下を報告する。
-
-- 何をしたか
-- 変更したファイル
-- 検証した内容
-- 残課題
-- PJメモ更新: 済 / 該当なし / 未実施（理由）
-- Dashboard反映: 済 / 不要 / 未実施（理由）
-
----
-
-作成後、AGENTS.mdの内容を要約し、秘密情報が含まれていないことを確認してください。</pre></div>
-            </div>
-            <div class="prompt-card">
-                <h3>GitHub連携</h3>
-                <div class="prompt-content"><pre>Obsidian Vault と GitHub を連携してください。
-
-前提:
-- GitHubはCodexのGitHubプラグインで接続済みです
-- GitHubの認証トークンをユーザーに入力させる前提にはしないでください
-- トークンや認証情報をAGENTS.md、Vault内ノート、共有資料に書かないでください
-- Obsidian VaultをGitHubでバックアップ・同期できるようにする作業です
-- リポジトリは private で作成・運用してください
-- この資料の手順に沿って、Codexで実行してください
-
-まず以下を確認してください。
-
-1. 現在の作業ディレクトリがObsidian Vaultルートか
-2. .git が存在するか
-3. 既存のremoteが設定されているか
-4. 未コミット変更があるか
-5. AGENTS.md、60_Templates、20_Contextなどがあるか
-6. .gitignore があるか
-
-## まだGit管理されていない場合
-
-以下を実行してください。
-
-1. git init
-2. .gitignore を作成
-3. 機密情報が含まれないように除外設定
-4. 初回コミット
-5. CodexのGitHubプラグインを使って private repository を作成
-6. 作成されたrepositoryをremoteに設定
-7. main ブランチとしてpush
-
-.gitignore には最低限以下を含めてください。
-
-.DS_Store
-.obsidian/workspace.json
-.obsidian/workspace-mobile.json
-.env
-.env.*
-*.key
-*token*
-sa-key.json
-*.pem
-
-## すでにGit管理されている場合
-
-以下を確認してください。
-
-1. git status -sb
-2. git remote -v
-3. git branch --show-current
-4. git log --oneline -5
-
-remoteが未設定なら、CodexのGitHubプラグインで private repository を作成し、remoteを設定してください。
-remoteが設定済みなら、現在の状態を説明し、必要ならpushしてください。
-
-## GitHub連携時のルール
-
-- repository name は MyVault を基本にする
-- 公開設定は必ず private
-- 初回セットアップのみ main に初期コミットしてよい
-- 認証情報、APIキー、トークン、個人情報が含まれていないか確認する
-- stage後に必ず git diff --cached を確認する
-- push前に .gitignore が効いているか確認する
-- GitHub操作はCodex GitHubプラグインを優先する
-- GitHub CLIやトークン手入力は、プラグインで対応できない場合だけ検討する
-- 認証が必要な場面では、勝手にトークン入力を求めず、プラグイン接続状態を確認する
-
-## 初回コミットメッセージ
-
-Initialize Obsidian second brain vault
-
-## 完了後に報告してほしいこと
-
-最後に以下を報告してください。
-
-1. Git管理の状態
-2. GitHub repository URL
-3. remote URL
-4. 現在のブランチ
-5. push済みかどうか
-6. .gitignore に含めた内容
-7. 機密情報チェック結果
-8. 次にやるべきこと
-
-不明点、private repository作成、push、外部公開範囲に関わる操作は、必要に応じて確認してから進めてください。</pre></div>
-            </div>
-            <div class="prompt-card">
-                <h3>10分自動同期</h3>
-                <div class="prompt-content"><pre>Obsidian Vault のGitHub同期を10分ごとに自動実行する設定を作ってください。
-
-前提:
-- このVaultはGitHubと連携済みです
-- GitHubはCodexのGitHubプラグインで接続済みです
-- 自動同期はローカル端末上で動く仕組みにしてください
-- 10分ごとに pull → 変更確認 → commit → push を行う想定です
-- 認証情報やトークンはファイルに書かないでください
-- .env やキー類は絶対に同期対象にしないでください
-
-やってほしいこと:
-
-1. 現在のVaultがGit管理されているか確認する
-   - git status -sb
-   - git remote -v
-   - git branch --show-current
-
-2. .gitignore を確認・必要なら更新する
-
-最低限以下を除外してください。
-
-.DS_Store
-.obsidian/workspace.json
-.obsidian/workspace-mobile.json
-.env
-.env.*
-*.key
-*token*
-sa-key.json
-*.pem
-
-3. 自動同期スクリプトを作成する
-
-保存先:
-05_CommandCenter/scripts/obsidian_git_autosync.sh
-
-仕様:
-- Vaultルートで実行されること
-- まず git pull --rebase --autostash を実行
-- コンフリクトが起きたら停止し、ログに記録する
-- 変更がなければ何もしない
-- 変更があれば git add -A
-- git diff --cached をログに残す
-- コミットメッセージは以下にする
-
-auto-sync: update vault notes
-
-- pushする
-- 実行結果をログに残す
-
-ログ保存先:
-05_CommandCenter/logs/obsidian_git_autosync.log
-
-4. 10分ごとに実行する設定を作成する
-
-macOSの場合は launchd を使ってください。
-
-plist保存先:
-~/Library/LaunchAgents/com.obsidian.vault.autosync.plist
-
-設定:
-- 10分ごとに実行
-- 標準出力・標準エラーはログに追記
-- 実行対象は作成した obsidian_git_autosync.sh
-
-5. launchdに登録する
-
-以下を実行してください。
-
-launchctl unload ~/Library/LaunchAgents/com.obsidian.vault.autosync.plist 2&gt;/dev/null || true
-launchctl load ~/Library/LaunchAgents/com.obsidian.vault.autosync.plist
-launchctl start com.obsidian.vault.autosync
-
-6. 動作確認する
-
-以下を確認してください。
-
-launchctl list | grep obsidian.vault.autosync
-tail -n 50 05_CommandCenter/logs/obsidian_git_autosync.log
-
-7. 完了後に報告する
-
-以下を報告してください。
-
-- 作成したスクリプト
-- 作成したplist
-- launchd登録状況
-- 最初の実行ログ
-- GitHub pushが成功したか
-- コンフリクト時の挙動
-- 解除方法
-
-注意:
-- 認証情報をファイルに書かない
-- コンフリクトが起きたら自動解決しない
-- .env やキー類をstageしない
-- 初回実行前に git status -sb を見せる
-- 不明点があれば勝手に進めず確認する</pre></div>
-            </div>
-        </div>
-    </section>
-
     <section id="faq">
         <div class="section-header">
             <h2>❓ よくある質問</h2>
@@ -2666,7 +1503,7 @@ tail -n 50 05_CommandCenter/logs/obsidian_git_autosync.log
         <div class="faq-list">
             <div class="faq-item">
                 <div class="faq-question">AGENTS.mdはなぜ最初から入れる？</div>
-                <div class="faq-answer"><p>Codexの出力品質は、最初に読ませる前提で大きく変わります。実運用で使っているAGENTS.md設定をベースに、講義参加者が最初から高い品質でCodexを使えるスターターとして入れます。</p></div>
+                <div class="faq-answer"><p>Codexの出力品質は、最初に読ませる前提で大きく変わります。配布版のAGENTS.mdを入れることで、受講者が最初から同じ作業ルールでCodexを使えるようにします。</p></div>
             </div>
             <div class="faq-item">
                 <div class="faq-question">AXAD MCPのキーはこの資料に載せる？</div>
