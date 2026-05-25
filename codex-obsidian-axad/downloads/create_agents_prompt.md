@@ -97,7 +97,6 @@ Vaultルートの AGENTS.md
 
 MyVault/
 ├── 00_Inbox/          # 未整理メモ
-├── 05_CommandCenter/  # 運用スクリプト、同期、ダッシュボード関連
 ├── 07_DailyLog/       # 日次ログ
 ├── 08_MeetingLog/     # MTG文字起こし・議事録
 ├── 10_Goals/          # 目標管理
@@ -108,6 +107,10 @@ MyVault/
 ├── 60_Templates/      # テンプレート
 ├── 70_Meetings/       # 定例・レビュー会
 └── 80_Outputs/        # HTMLや共有用成果物
+
+補足:
+- 05_CommandCenter/ は初期作成必須ではない
+- GitHub自動同期など、運用スクリプトが必要になった時に作成する
 
 ## Vault運用ルール
 
