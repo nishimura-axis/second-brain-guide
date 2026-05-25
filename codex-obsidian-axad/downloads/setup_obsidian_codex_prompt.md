@@ -49,13 +49,13 @@
 4. 広告コンテキストを配置する
    - ads_context_bundle.zip を展開する
    - 展開された ads_context/ 配下のMarkdownを 20_Context/AXIS/Ads/ に配置する
-   - _Overview.md、_Lecture_Guidelines.md、Ad_Management_Overview.md、Lecture_01〜Lecture_09、Meta_Invoice_Reconciliation.md、Members/ が揃っていることを確認する
+   - Lecture_01〜Lecture_09 の9ファイルだけが揃っていることを確認する
 
 5. 動作確認する
    - フォルダが揃っているか
    - テンプレートがあるか
    - AGENTS.mdがあるか
-   - 20_Context/AXIS/Ads/ に _Overview.md、_Lecture_Guidelines.md、Ad_Management_Overview.md、Lecture_01〜Lecture_09、Meta_Invoice_Reconciliation.md、Members/ が入っているか
+   - 20_Context/AXIS/Ads/ に Lecture_01〜Lecture_09 の9ファイルだけが入っているか
    - Codexが次回以降どの入口を参照すればよいか
 
 最後に、作成・配置したものと、次に整えるべきものを一覧で報告してください。
