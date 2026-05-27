@@ -7,6 +7,7 @@ Obsidian Vault と GitHub を連携してください。
 - Obsidian VaultをGitHubでバックアップ・同期できるようにする作業です
 - リポジトリは private で作成・運用してください
 - この資料の手順に沿って、Codexで実行してください
+- この後の10分同期はObsidian Gitプラグインで設定します
 
 まず以下を確認してください。
 
@@ -81,5 +82,6 @@ Initialize Obsidian second brain vault
 6. .gitignore に含めた内容
 7. 機密情報チェック結果
 8. 次にやるべきこと
+9. Obsidian Gitプラグインで同期設定へ進める状態か
 
 不明点、private repository作成、push、外部公開範囲に関わる操作は、必要に応じて確認してから進めてください。
